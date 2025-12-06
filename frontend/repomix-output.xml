@@ -1,0 +1,3618 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+public/
+  vite.svg
+src/
+  assets/
+    dokra.jpg
+    handicrafts.jpg
+    home.png
+    kerala-ayurveda.webp
+    kullu-caps.jpg
+    kutch-embroidery.png
+    painting.jpg
+    pashmina_shawl.jpg
+    PATTACHITRA.jpg
+    react.svg
+    Sandal_Soap.jpg
+    saree.jpg
+    scooter.png
+    shop.png
+    tea.jpg
+  components/
+    CartItemCard.jsx
+    CategoryCard.jsx
+    DeliveryBoy.jsx
+    DeliveryBoyTracking.jsx
+    FloatingStation.jsx
+    FoodCard.jsx
+    Nav.jsx
+    OwnerDashboard.jsx
+    OwnerItemCard.jsx
+    OwnerOrderCard.jsx
+    ShopCard.jsx
+    StationCard.jsx
+    UserDashboard.jsx
+    UserOrderCard.jsx
+  hooks/
+    useGetCity.jsx
+    useGetCurrentUser.jsx
+    useGetItemsByCity.jsx
+    useGetMyOrders.jsx
+    useGetMyShop.jsx
+    useGetShopByCity.jsx
+    useUpdateLocation.jsx
+  pages/
+    AddItem.jsx
+    CartPage.jsx
+    CheckOut.jsx
+    CreateEditShop.jsx
+    EditItem.jsx
+    ForgotPassword.jsx
+    Home.jsx
+    MyOrders.jsx
+    OrderPlaced.jsx
+    Shop.jsx
+    ShopsList.jsx
+    SignIn.jsx
+    SignUp.jsx
+    StationFoodList.jsx
+    StationSearchPage.jsx
+    TrackOrderPage.jsx
+    TrainDetails.jsx
+  redux/
+    mapSlice.js
+    ownerSlice.js
+    store.js
+    train.slice.js
+    userSlice.js
+  App.jsx
+  category.js
+  index.css
+  main.jsx
+.gitignore
+eslint.config.js
+firebase.js
+index.html
+package.json
+README.md
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="src/components/CartItemCard.jsx">
+import React from 'react'
+import { FaMinus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { CiTrash } from "react-icons/ci";
+import { useDispatch } from 'react-redux';
+import { removeCartItem, updateQuantity } from '../redux/userSlice';
+function CartItemCard({data}) {
+    const dispatch=useDispatch()
+    const handleIncrease=(id,currentQty)=>{
+       dispatch(updateQuantity({id,quantity:currentQty+1}))
+    }
+      const handleDecrease=(id,currentQty)=>{
+        if(currentQty>1){
+  dispatch(updateQuantity({id,quantity:currentQty-1}))
+        }
+        
+    }
+  return (
+    <div className='flex items-center justify-between bg-white p-4 rounded-xl shadow border'>
+      <div className='flex items-center gap-4'>
+        <img src={data.image} alt="" className='w-20 h-20 object-cover rounded-lg border'/>
+        <div>
+            <h1 className='font-medium text-gray-800'>{data.name}</h1>
+            <p className='text-sm text-gray-500'>₹{data.price} x {data.quantity}</p>
+            <p className="font-bold text-gray-900">₹{data.price*data.quantity}</p>
+        </div>
+      </div>
+      <div className='flex items-center gap-3'>
+        <button className='p-2 cursor-pointer bg-gray-100 rounded-full hover:bg-gray-200' onClick={()=>handleDecrease(data.id,data.quantity)}>
+        <FaMinus size={12}/>
+        </button>
+        <span>{data.quantity}</span>
+        <button className='p-2 cursor-pointer bg-gray-100 rounded-full hover:bg-gray-200'  onClick={()=>handleIncrease(data.id,data.quantity)}>
+        <FaPlus size={12}/>
+        </button>
+        <button className="p-2 bg-red-100 text-red-600 rounded-full hover:bg-red-200"
+ onClick={()=>dispatch(removeCartItem(data.id))}>
+<CiTrash size={18}/>
+        </button>
+      </div>
+    </div>
+  )
+}
+
+export default CartItemCard
+</file>
+
+<file path="src/components/CategoryCard.jsx">
+import React from 'react'
+
+function CategoryCard({name,image,onClick}) {
+  return (
+    <div className='w-[120px] h-[120px] md:w-[180px] md:h-[180px] rounded-2xl border-2 border-[#ff4d2d] shrink-0 overflow-hidden bg-white shadow-xl shadow-gray-200 hover:shadow-lg transition-shadow relative' onClick={onClick}>
+     <img src={image} alt="" className=' w-full h-full object-cover transform hover:scale-110 transition-transform duration-300'/>
+     <div className='absolute  bottom-0 w-full left-0  bg-[#ffffff96] bg-opacity-95 px-3 py-1 rounded-t-xl text-center shadow text-sm font-medium text-gray-800 backdrop-blur'>
+{name}
+     </div>
+    </div>
+  )
+}
+
+export default CategoryCard
+</file>
+
+<file path="src/components/DeliveryBoy.jsx">
+import React from 'react'
+import Nav from './Nav'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+import { serverUrl } from '../App'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import DeliveryBoyTracking from './DeliveryBoyTracking'
+import { ClipLoader } from 'react-spinners'
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+
+function DeliveryBoy() {
+  const {userData,socket}=useSelector(state=>state.user)
+  const [currentOrder,setCurrentOrder]=useState()
+  const [showOtpBox,setShowOtpBox]=useState(false)
+  const [availableAssignments,setAvailableAssignments]=useState(null)
+  const [otp,setOtp]=useState("")
+  const [todayDeliveries,setTodayDeliveries]=useState([])
+const [deliveryBoyLocation,setDeliveryBoyLocation]=useState(null)
+const [loading,setLoading]=useState(false)
+const [message,setMessage]=useState("")
+  useEffect(()=>{
+    if(!socket) return;
+    
+    socket.on('newAssignment',(data)=>{
+      console.log("New Assignment Received:", data) // Add this for debugging
+      // Check if this assignment is for this delivery boy
+      if(data.sentTo === userData._id) {
+        setAvailableAssignments(prev => {
+          // Prevent duplicates
+          if(prev && prev.some(a => a.assignmentId === data.assignmentId)) {
+            return prev;
+          }
+          return prev ? [...prev, data] : [data];
+        })
+      }
+    })
+    
+    return ()=>{
+      socket.off('newAssignment')
+    }
+}, [socket, userData._id]) // Add userData._id as dependency
+useEffect(() => {
+  if(socket) {
+    console.log("Socket connected:", socket.connected)
+    console.log("Socket ID:", socket.id)
+  }
+}, [socket])
+
+const ratePerDelivery=50
+const totalEarning=todayDeliveries.reduce((sum,d)=>sum + d.count*ratePerDelivery,0)
+
+
+
+  const getAssignments=async () => {
+    try {
+      const result=await axios.get(`${serverUrl}/api/order/get-assignments`,{withCredentials:true})
+      
+      setAvailableAssignments(result.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getCurrentOrder=async () => {
+     try {
+      const result=await axios.get(`${serverUrl}/api/order/get-current-order`,{withCredentials:true})
+    setCurrentOrder(result.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  const acceptOrder=async (assignmentId) => {
+    try {
+      const result=await axios.get(`${serverUrl}/api/order/accept-order/${assignmentId}`,{withCredentials:true})
+    console.log(result.data)
+    await getCurrentOrder()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    socket.on('newAssignment',(data)=>{
+      setAvailableAssignments(prev=>([...prev,data]))
+    })
+    return ()=>{
+      socket.off('newAssignment')
+    }
+  },[socket])
+  
+  const sendOtp=async () => {
+    setLoading(true)
+    try {
+      const result=await axios.post(`${serverUrl}/api/order/send-delivery-otp`,{
+        orderId:currentOrder._id,shopOrderId:currentOrder.shopOrder._id
+      },{withCredentials:true})
+      setLoading(false)
+       setShowOtpBox(true)
+    console.log(result.data)
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+   const verifyOtp=async () => {
+    setMessage("")
+    try {
+      const result=await axios.post(`${serverUrl}/api/order/verify-delivery-otp`,{
+        orderId:currentOrder._id,shopOrderId:currentOrder.shopOrder._id,otp
+      },{withCredentials:true})
+    console.log(result.data)
+    setMessage(result.data.message)
+    location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+   const handleTodayDeliveries=async () => {
+    
+    try {
+      const result=await axios.get(`${serverUrl}/api/order/get-today-deliveries`,{withCredentials:true})
+    console.log(result.data)
+   setTodayDeliveries(result.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+ 
+
+  useEffect(()=>{
+getAssignments()
+getCurrentOrder()
+handleTodayDeliveries()
+  },[userData])
+  return (
+    <div className='w-screen min-h-screen flex flex-col gap-5 items-center bg-[#fff9f6] overflow-y-auto'>
+      <Nav/>
+      <div className='w-full max-w-[800px] flex flex-col gap-5 items-center'>
+    <div className='bg-white rounded-2xl shadow-md p-5 flex flex-col justify-start items-center w-[90%] border border-orange-100 text-center gap-2'>
+<h1 className='text-xl font-bold text-[#ff4d2d]'>Welcome, {userData.fullName}</h1>
+<p className='text-[#ff4d2d] '><span className='font-semibold'>Latitude:</span> {deliveryBoyLocation?.lat}, <span className='font-semibold'>Longitude:</span> {deliveryBoyLocation?.lon}</p>
+    </div>
+
+<div className='bg-white rounded-2xl shadow-md p-5 w-[90%] mb-6 border border-orange-100'>
+  <h1 className='text-lg font-bold mb-3 text-[#ff4d2d] '>Today Deliveries</h1>
+
+  <ResponsiveContainer width="100%" height={200}>
+   <BarChart data={todayDeliveries}>
+  <CartesianGrid strokeDasharray="3 3"/>
+  <XAxis dataKey="hour" tickFormatter={(h)=>`${h}:00`}/>
+    <YAxis  allowDecimals={false}/>
+    <Tooltip formatter={(value)=>[value,"orders"]} labelFormatter={label=>`${label}:00`}/>
+      <Bar dataKey="count" fill='#ff4d2d'/>
+   </BarChart>
+  </ResponsiveContainer>
+
+  <div className='max-w-sm mx-auto mt-6 p-6 bg-white rounded-2xl shadow-lg text-center'>
+<h1 className='text-xl font-semibold text-gray-800 mb-2'>Today's Earning</h1>
+<span className='text-3xl font-bold text-green-600'>₹{totalEarning}</span>
+  </div>
+</div>
+
+
+{!currentOrder && <div className='bg-white rounded-2xl p-5 shadow-md w-[90%] border border-orange-100'>
+<h1 className='text-lg font-bold mb-4 flex items-center gap-2'>Available Orders</h1>
+
+<div className='space-y-4'>
+{availableAssignments?.length>0
+?
+(
+availableAssignments.map((a,index)=>(
+  <div className='border rounded-lg p-4 flex justify-between items-center' key={index}>
+   <div>
+    <p className='text-sm font-semibold'>{a?.shopName}</p>
+    <p className='text-sm text-gray-500'><span className='font-semibold'>Delivery Address:</span> {a?.deliveryAddress.text}</p>
+<p className='text-xs text-gray-400'>{a.items.length} items | {a.subtotal}</p>
+   </div>
+   <button className='bg-orange-500 text-white px-4 py-1 rounded-lg text-sm hover:bg-orange-600' onClick={()=>acceptOrder(a.assignmentId)}>Accept</button>
+
+  </div>
+))
+):<p className='text-gray-400 text-sm'>No Available Orders</p>}
+</div>
+</div>}
+
+{currentOrder && <div className='bg-white rounded-2xl p-5 shadow-md w-[90%] border border-orange-100'>
+<h2 className='text-lg font-bold mb-3'>📦Current Order</h2>
+<div className='border rounded-lg p-4 mb-3'>
+  <p className='font-semibold text-sm'>{currentOrder?.shopOrder.shop.name}</p>
+  <p className='text-sm text-gray-500'>{currentOrder.deliveryAddress.text}</p>
+ <p className='text-xs text-gray-400'>{currentOrder.shopOrder.shopOrderItems.length} items | {currentOrder.shopOrder.subtotal}</p>
+</div>
+
+ <DeliveryBoyTracking data={{ 
+  deliveryBoyLocation:deliveryBoyLocation || {
+        lat: userData.location.coordinates[1],
+        lon: userData.location.coordinates[0]
+      },
+      customerLocation: {
+        lat: currentOrder.deliveryAddress.latitude,
+        lon: currentOrder.deliveryAddress.longitude
+      }}} />
+{!showOtpBox ? <button className='mt-4 w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:bg-green-600 active:scale-95 transition-all duration-200' onClick={sendOtp} disabled={loading}>
+{loading?<ClipLoader size={20} color='white'/> :"Mark As Delivered"}
+ </button>:<div className='mt-4 p-4 border rounded-xl bg-gray-50'>
+<p className='text-sm font-semibold mb-2'>Enter Otp send to <span className='text-orange-500'>{currentOrder.user.fullName}</span></p>
+<input type="text" className='w-full border px-3 py-2 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-orange-400' placeholder='Enter OTP' onChange={(e)=>setOtp(e.target.value)} value={otp}/>
+{message && <p className='text-center text-green-400 text-2xl mb-4'>{message}</p>}
+
+<button className="w-full bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600 transition-all" onClick={verifyOtp}>Submit OTP</button>
+  </div>}
+
+  </div>}
+
+
+      </div>
+    </div>
+  )
+}
+
+export default DeliveryBoy
+</file>
+
+<file path="src/components/DeliveryBoyTracking.jsx">
+import React from 'react'
+import scooter from "../assets/scooter.png"
+import home from "../assets/home.png"
+import "leaflet/dist/leaflet.css"
+import L from "leaflet"
+import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet'
+const deliveryBoyIcon = new L.Icon({
+    iconUrl: scooter,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40]
+})
+const customerIcon = new L.Icon({
+    iconUrl: home,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40]
+})
+function DeliveryBoyTracking({ data }) {
+
+    const deliveryBoyLat = data.deliveryBoyLocation.lat
+    const deliveryBoylon = data.deliveryBoyLocation.lon
+    const customerLat = data.customerLocation.lat
+    const customerlon = data.customerLocation.lon
+
+    const path = [
+        [deliveryBoyLat, deliveryBoylon],
+        [customerLat, customerlon]
+    ]
+
+    const center = [deliveryBoyLat, deliveryBoylon]
+
+    return (
+        <div className='w-full h-[400px] mt-3 rounded-xl overflow-hidden shadow-md'>
+            <MapContainer
+                className={"w-full h-full"}
+                center={center}
+                zoom={16}
+            >
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+             <Marker position={[deliveryBoyLat,deliveryBoylon]} icon={deliveryBoyIcon}>
+             <Popup>Delivery Boy</Popup>
+             </Marker>
+              <Marker position={[customerLat,customerlon]} icon={customerIcon}>
+             <Popup>Delivery Boy</Popup>
+             </Marker>
+
+
+<Polyline positions={path} color='blue' weight={4}/>
+
+            </MapContainer>
+        </div>
+    )
+}
+
+export default DeliveryBoyTracking
+</file>
+
+<file path="src/components/FloatingStation.jsx">
+// FloatingDeliveryBar.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+export default function FloatingDeliveryBar({ item }) {
+    const primaryColor = "#ff4d2d";
+    const hoverColor = "#e64323";
+    const bgColor = "#fff9f6";
+    const borderColor = "#ddd";
+
+    return (
+        <div
+            className="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50"
+            style={{ width: "70%" }}
+            role="region"
+            aria-label="Delivery location bar"
+        >
+            <div
+                className="w-full flex items-center justify-between px-4 py-3 rounded-lg shadow-md"
+                style={{
+                    backgroundColor: bgColor,
+                    border: `1px solid ${borderColor}`,
+                }}
+            >
+                {/* Left: station info */}
+                <div className="flex items-start gap-3 min-w-0">
+                    <div className="flex flex-col">
+                        <span className="text-sm text-gray-600">Delivery location</span>
+                        <span
+                            className="text-lg font-semibold truncate"
+                            title={item + " Station" || "(not selected)"}
+                        >
+                            {item + " Station" || "(not selected)"}
+                        </span>
+                        {/* <span className="text-xs text-gray-500">
+              {station?.station?.code ? `Code: ${station.station.code}` : ""}
+            </span> */}
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <Link to="/my-orders">
+                        <button
+                            type="button"
+                            className="px-4 py-2 rounded-md text-white font-medium transition-shadow"
+                            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
+                            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = primaryColor)}
+                            style={{ backgroundColor: primaryColor }}
+                        >
+                            Got To Order Page
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
+}
+</file>
+
+<file path="src/components/FoodCard.jsx">
+import React, { useState } from 'react'
+import { FaLeaf } from "react-icons/fa";
+import { FaDrumstickBite } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux/userSlice';
+
+function FoodCard({data}) {
+const [quantity,setQuantity]=useState(0)
+const dispatch=useDispatch()
+const {cartItems}=useSelector(state=>state.user)
+    const renderStars=(rating)=>{   //r=3
+        const stars=[];
+        for (let i = 1; i <= 5; i++) {
+           stars.push(
+            (i<=rating)?(
+                <FaStar className='text-yellow-500 text-lg'/>
+            ):(
+                <FaRegStar className='text-yellow-500 text-lg'/>
+            )
+           )
+            
+        }
+return stars
+    }
+
+const handleIncrease=()=>{
+    const newQty=quantity+1
+    setQuantity(newQty)
+}
+const handleDecrease=()=>{
+    if(quantity>0){
+const newQty=quantity-1
+    setQuantity(newQty)
+    }
+    
+}
+
+  return (
+    <div className='w-[250px] rounded-2xl border-2 border-[#ff4d2d] bg-white shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col'>
+      <div className='relative w-full h-[170px] flex justify-center items-center bg-white'>
+
+
+<img src={data.image} alt="" className='w-full h-full object-cover transition-transform duration-300 hover:scale-105'/>
+      </div>
+
+      <div className="flex-1 flex flex-col p-4">
+<h1 className='font-semibold text-gray-900 text-base truncate'>{data.name}</h1>
+
+<div className='flex items-center gap-1 mt-1'>
+{renderStars(data.rating?.average || 0)}
+<span className='text-xs text-gray-500'>
+    {data.rating?.count || 0}
+</span>
+</div>
+      </div>
+
+<div className='flex items-center justify-between mt-auto p-3'>
+<span className='font-bold text-gray-900 text-lg'>
+    ₹{data.price}
+</span>
+
+<div className='flex items-center border rounded-full overflow-hidden shadow-sm'>
+<button className='px-2 py-1 hover:bg-gray-100 transition' onClick={handleDecrease}>
+<FaMinus size={12}/>
+</button>
+<span>{quantity}</span>
+<button className='px-2 py-1 hover:bg-gray-100 transition' onClick={handleIncrease}>
+<FaPlus size={12}/>
+</button>
+<button className={`${cartItems.some(i=>i.id==data._id)?"bg-gray-800":"bg-[#ff4d2d]"} text-white px-3 py-2 transition-colors`}  onClick={()=>{
+    quantity>0?dispatch(addToCart({
+          id:data._id,
+          name:data.name,
+          price:data.price,
+          image:data.image,
+          shop:data.shop,
+          quantity,
+          foodType:data.foodType
+})):null}}>
+<FaShoppingCart size={16}/>
+</button>
+</div>
+</div>
+
+
+    </div>
+  )
+}
+
+export default FoodCard
+</file>
+
+<file path="src/components/Nav.jsx">
+import React, { useEffect, useState } from 'react'
+import { FaLocationDot } from "react-icons/fa6";
+import { IoIosSearch } from "react-icons/io";
+import { FiShoppingCart } from "react-icons/fi";
+import { useDispatch, useSelector } from 'react-redux';
+import { RxCross2 } from "react-icons/rx";
+import axios from 'axios';
+import { serverUrl } from '../App';
+import { setSearchItems, setUserData } from '../redux/userSlice';
+import { FaPlus } from "react-icons/fa6";
+import { TbReceipt2 } from "react-icons/tb";
+import { useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form"
+
+function Nav() {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm()
+    const { userData, currentCity, cartItems } = useSelector(state => state.user)
+    const { myShopData } = useSelector(state => state.owner)
+    const [showInfo, setShowInfo] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
+    const [query, setQuery] = useState("")
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleLogOut = async () => {
+        try {
+            const result = await axios.get(`${serverUrl}/api/auth/signout`, { withCredentials: true })
+            dispatch(setUserData(null))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    // function toISODate(d) {
+    //     if (!d) return "";
+    //     const dt = new Date(d);
+    //     if (Number.isNaN(dt.getTime())) return "";
+    //     const y = dt.getFullYear();
+    //     const m = String(dt.getMonth() + 1).padStart(2, "0");
+    //     const day = String(dt.getDate()).padStart(2, "0");
+    //     return `${y}-${m}-${day}`;
+    // }
+    const handleSearch = async (data) => {
+        const q = (data.trainNo || "").trim();
+        const iso = data.trainDate || ""; 
+        const params = new URLSearchParams();
+        if (q) params.set("q", q);
+        if (iso) params.set("date", iso);
+        navigate(`/search?${params.toString()}`);
+    }
+
+    useEffect(() => {
+        if (query) {
+            // handleSearchItems()
+        } else {
+            dispatch(setSearchItems(null))
+        }
+
+    }, [query])
+    return (
+        <div className='w-full h-[80px] flex items-center justify-between md:justify-center gap-[30px] px-[20px] fixed top-0 z-[9999] bg-[#fff9f6] overflow-visible'>
+
+            {showSearch && userData.role == "user" && <div className='w-[90%] h-[70px]  bg-white shadow-xl rounded-lg items-center gap-[20px] flex fixed top-[80px] left-[5%] md:hidden'>
+                <div className='flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r-[2px] border-gray-400'>
+                    <FaLocationDot size={25} className=" text-[#ff4d2d]" />
+                    <div className='w-[80%] truncate text-gray-600'>{currentCity}</div>
+                </div>
+                <div className='w-[80%] flex items-center gap-[10px]'>
+                    <IoIosSearch size={25} className='text-[#ff4d2d]' />
+                    <input type="text" placeholder='Enter Train No.' className='px-[10px] text-gray-700 outline-0 w-full' onChange={(e) => setQuery(e.target.value)} value={query} />
+                    <input type="date" className="px-[10px] py-[8px] text-gray-700 outline-none border border-gray-300 rounded-lg focus:border-[#ff4d2d] cursor-pointer" />
+                </div>
+            </div>}
+
+
+
+            <h1 className='text-3xl font-bold mb-2 text-[#ff4d2d]'>Smart Cart</h1>
+            {userData.role == "user" && <div className='md:w-[60%] lg:w-[40%] h-[70px] bg-white shadow-xl rounded-lg items-center gap-[20px] hidden md:flex'>
+                <div className='flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r-[2px] border-gray-400'>
+                    <FaLocationDot size={25} className=" text-[#ff4d2d]" />
+                    <div className='w-[80%] truncate text-gray-600'>{currentCity}</div>
+                </div>
+                <div className='w-[80%] flex items-center gap-[10px]'>
+                    <IoIosSearch size={25} className='text-[#ff4d2d]' />
+                    <form action="" className='flex row' onSubmit={handleSubmit(handleSearch)}>
+                        <input type="text" {...register("trainNo")} placeholder='Enter Train No.' className='px-[10px] text-gray-700 outline-0 w-full' onChange={(e) => setQuery(e.target.value)} value={query} />
+                        <input type="date" {...register("trainDate")} className="px-[10px] py-[8px] text-gray-700 outline-none border border-gray-300 rounded-lg focus:border-[#ff4d2d] cursor-pointer" />
+                    </form>
+                </div>
+            </div>}
+
+            <div className='flex items-center gap-4'>
+                {userData.role == "user" && (showSearch ? <RxCross2 size={25} className='text-[#ff4d2d] md:hidden' onClick={() => setShowSearch(false)} /> : <IoIosSearch size={25} className='text-[#ff4d2d] md:hidden' onClick={() => setShowSearch(true)} />)
+                }
+                {userData.role == "owner" ? <>
+                    {myShopData && <> <button className='hidden md:flex items-center gap-1 p-2 cursor-pointer rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]' onClick={() => navigate("/add-item")}>
+                        <FaPlus size={20} />
+                        <span>Add Item</span>
+                    </button>
+                        <button className='md:hidden flex items-center  p-2 cursor-pointer rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]' onClick={() => navigate("/add-item")}>
+                            <FaPlus size={20} />
+                        </button></>}
+
+                    <div className='hidden md:flex items-center gap-2 cursor-pointer relative px-3 py-1 rounded-lg bg-[#ff4d2d]/10 text-[#ff4d2d] font-medium' onClick={() => navigate("/my-orders")}>
+                        <TbReceipt2 size={20} />
+                        <span>My Orders</span>
+
+                    </div>
+                    <div className='md:hidden flex items-center gap-2 cursor-pointer relative px-3 py-1 rounded-lg bg-[#ff4d2d]/10 text-[#ff4d2d] font-medium' onClick={() => navigate("/my-orders")}>
+                        <TbReceipt2 size={20} />
+
+                    </div>
+                </> : (
+                    <>
+                        {userData.role == "user" && <div className='relative cursor-pointer' onClick={() => navigate("/cart")}>
+                            <FiShoppingCart size={25} className='text-[#ff4d2d]' />
+                            <span className='absolute right-[-9px] top-[-12px] text-[#ff4d2d]'>{cartItems.length}</span>
+                        </div>}
+
+
+
+                        <button className='hidden md:block px-3 py-1 rounded-lg bg-[#ff4d2d]/10 text-[#ff4d2d] text-sm font-medium' onClick={() => navigate("/my-orders")}>
+                            My Orders
+                        </button>
+                    </>
+                )}
+
+
+
+                <div className='w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#ff4d2d] text-white text-[18px] shadow-xl font-semibold cursor-pointer' onClick={() => setShowInfo(prev => !prev)}>
+                    {userData?.fullName.slice(0, 1)}
+                </div>
+                {showInfo && <div className={`fixed top-[80px] right-[10px] 
+                    ${userData.role == "deliveryBoy" ? "md:right-[20%] lg:right-[40%]" : "md:right-[10%] lg:right-[25%]"} w-[180px] bg-white shadow-2xl rounded-xl p-[20px] flex flex-col gap-[10px] z-[9999]`}>
+                    <div className='text-[17px] font-semibold'>{userData.fullName}</div>
+                    {userData.role == "user" && <div className='md:hidden text-[#ff4d2d] font-semibold cursor-pointer' onClick={() => navigate("/my-orders")}>My Orders</div>}
+
+                    <div className='text-[#ff4d2d] font-semibold cursor-pointer' onClick={handleLogOut}>Log Out</div>
+                </div>}
+
+            </div>
+        </div>
+    )
+}
+
+
+export default Nav
+</file>
+
+<file path="src/components/OwnerDashboard.jsx">
+import React from 'react'
+import Nav from './Nav'
+import { useSelector } from 'react-redux'
+import { FaUtensils } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { FaPen } from "react-icons/fa";
+import OwnerItemCard from './OwnerItemCard';
+import { FaShop } from "react-icons/fa6";
+
+function OwnerDashboard() {
+  const { myShopData } = useSelector(state => state.owner)
+  const navigate = useNavigate()
+
+
+  return (
+    <div className='w-full min-h-screen bg-[#fff9f6] flex flex-col items-center'>
+      <Nav />
+      {!myShopData &&
+        <div className='flex justify-center items-center p-4 sm:p-6'>
+          <div className='w-full max-w-md bg-white shadow-lg rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300'>
+            <div className='flex flex-col items-center text-center'>
+              <FaShop className='text-[#ff4d2d] w-16 h-16 sm:w-20 sm:h-20 mb-4' />
+              <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2'>Add Your Shop</h2>
+              <p className='text-gray-600 mb-4 text-sm sm:text-base'>Join our shop item platform and reach thousands of customers every day.
+              </p>
+              <button className='bg-[#ff4d2d] text-white px-5 sm:px-6 py-2 rounded-full font-medium shadow-md hover:bg-orange-600 transition-colors duration-200' onClick={() => navigate("/create-edit-shop")}>
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      {myShopData &&
+        <div className='w-full flex flex-col items-center gap-6 px-4 sm:px-6'>
+          <h1 className='text-2xl sm:text-3xl text-gray-900 flex items-center gap-3 mt-8 text-center'><FaShop className='text-[#ff4d2d] w-14 h-14 ' />Welcome to {myShopData.name}</h1>
+
+          <div className='bg-white shadow-lg rounded-xl overflow-hidden border border-orange-100 hover:shadow-2xl transition-all duration-300 w-full max-w-3xl relative'>
+            <div className='absolute top-4 right-4 bg-[#ff4d2d] text-white p-2 rounded-full shadow-md hover:bg-orange-600 transition-colors cursor-pointer' onClick={() => navigate("/create-edit-shop")}>
+              <FaPen size={20} />
+            </div>
+            <img src={myShopData.image} alt={myShopData.name} className='w-full h-48 sm:h-64 object-cover' />
+            <div className='p-4 sm:p-6'>
+              <h1 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2'>{myShopData.name}</h1>
+              <p className='text-gray-500 '>{myShopData.city},{myShopData.state}</p>
+              <p className='text-gray-500 mb-4'>{myShopData.address}</p>
+            </div>
+          </div>
+
+          {myShopData.items.length == 0 &&
+            <div className='flex justify-center items-center p-4 sm:p-6'>
+              <div className='w-full max-w-md bg-white shadow-lg rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300'>
+                <div className='flex flex-col items-center text-center'>
+                  <FaUtensils className='text-[#ff4d2d] w-16 h-16 sm:w-20 sm:h-20 mb-4' />
+                  <h2 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2'>Add Your Item</h2>
+                  <p className='text-gray-600 mb-4 text-sm sm:text-base'>Share your unique creations with our customers by adding them to the SMART CART.
+                  </p>
+                  <button className='bg-[#ff4d2d] text-white px-5 sm:px-6 py-2 rounded-full font-medium shadow-md hover:bg-orange-600 transition-colors duration-200' onClick={() => navigate("/add-item")}>
+                    Add Item
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+
+          {myShopData.items.length > 0 && <div className='flex flex-col items-center gap-4 w-full max-w-3xl '>
+            {myShopData.items.map((item, index) => (
+              <OwnerItemCard data={item} key={index} />
+            ))}
+          </div>}
+
+        </div>}
+
+
+
+    </div>
+  )
+}
+
+export default OwnerDashboard
+</file>
+
+<file path="src/components/OwnerItemCard.jsx">
+import axios from 'axios';
+import React from 'react'
+import { FaPen } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { serverUrl } from '../App';
+import { useDispatch } from 'react-redux';
+import { setMyShopData } from '../redux/ownerSlice';
+function OwnerItemCard({data}) {
+    const navigate=useNavigate()
+    const dispatch=useDispatch()
+    const handleDelete=async () => {
+      try {
+        const result=await axios.get(`${serverUrl}/api/item/delete/${data._id}`,{withCredentials:true})
+        dispatch(setMyShopData(result.data))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  return (
+    <div className='flex bg-white rounded-lg shadow-md overflow-hidden border border-[#ff4d2d] w-full max-w-2xl'>
+      <div className='w-36  flex-shrink-0 bg-gray-50'>
+        <img src={data.image} alt="" className='w-full h-full object-cover'/>
+      </div>
+      <div className='flex flex-col justify-between p-3 flex-1'>
+          <div>
+<h2 className='text-base font-semibold text-[#ff4d2d]'>{data.name}</h2>
+<p><span className='font-medium text-gray-70'>Category:</span> {data.category}</p>
+{/* <p><span className='font-medium text-gray-70'>Food Type:</span> {data.foodType}</p> */}
+          </div>
+          <div className='flex items-center justify-between'>
+            <div className='text-[#ff4d2d] font-bold'>{data.price}</div>
+          <div className='flex items-center gap-2'>
+<div className='p-2 cursor-pointer rounded-full hover:bg-[#ff4d2d]/10  text-[#ff4d2d]' onClick={()=>navigate(`/edit-item/${data._id}`)}>
+<FaPen size={16}/>
+</div>
+<div className='p-2 cursor-pointer rounded-full hover:bg-[#ff4d2d]/10  text-[#ff4d2d]' onClick={handleDelete}>
+<FaTrashAlt size={16}/>
+</div>
+          </div>
+
+          </div>
+      </div>
+    </div>
+  )
+}
+
+export default OwnerItemCard
+</file>
+
+<file path="src/components/OwnerOrderCard.jsx">
+import axios from 'axios';
+import React from 'react'
+import { MdPhone } from "react-icons/md";
+import { serverUrl } from '../App';
+import { useDispatch } from 'react-redux';
+import { updateOrderStatus } from '../redux/userSlice';
+import { useState } from 'react';
+import { useEffect } from 'react';
+function OwnerOrderCard({ data }) {
+    const [availableBoys,setAvailableBoys]=useState([])
+const dispatch=useDispatch()
+    const handleUpdateStatus=async (orderId,shopId,status) => {
+        try {
+            const result=await axios.post(`${serverUrl}/api/order/update-status/${orderId}/${shopId}`,{status},{withCredentials:true})
+             dispatch(updateOrderStatus({orderId,shopId,status}))
+             setAvailableBoys(result.data.availableBoys)
+             console.log(result.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+  
+    return (
+        <div className='bg-white rounded-lg shadow p-4 space-y-4'>
+            <div>
+                <h2 className='text-lg font-semibold text-gray-800'>{data.user.fullName}</h2>
+                <p className='text-sm text-gray-500'>{data.user.email}</p>
+                <p className='flex items-center gap-2 text-sm text-gray-600 mt-1'><MdPhone /><span>{data.user.mobile}</span></p>
+                {data.paymentMethod=="online"?<p className='gap-2 text-sm text-gray-600'>payment: {data.payment?"true":"false"}</p>:<p className='gap-2 text-sm text-gray-600'>Payment Method: {data.paymentMethod}</p>}
+                
+            </div>
+
+            <div className='flex items-start flex-col gap-2 text-gray-600 text-sm'>
+                <p>{data?.deliveryAddress?.text}</p>
+                <p className='text-xs text-gray-500'>Lat: {data?.deliveryAddress.latitude} , Lon {data?.deliveryAddress.longitude}</p>
+            </div>
+
+            <div className='flex space-x-4 overflow-x-auto pb-2'>
+                {data.shopOrders.shopOrderItems.map((item, index) => (
+                    <div key={index} className='flex-shrink-0 w-40 border rounded-lg p-2 bg-white"'>
+                        <img src={item.item.image} alt="" className='w-full h-24 object-cover rounded' />
+                        <p className='text-sm font-semibold mt-1'>{item.name}</p>
+                        <p className='text-xs text-gray-500'>Qty: {item.quantity} x ₹{item.price}</p>
+                    </div>
+                ))}
+            </div>
+
+<div className='flex justify-between items-center mt-auto pt-3 border-t border-gray-100'>
+<span className='text-sm'>status: <span className='font-semibold capitalize text-[#ff4d2d]'>{data.shopOrders.status}</span>
+</span>
+
+<select  className='rounded-md border px-3 py-1 text-sm focus:outline-none focus:ring-2 border-[#ff4d2d] text-[#ff4d2d]' onChange={(e)=>handleUpdateStatus(data._id,data.shopOrders.shop._id,e.target.value)}>
+    <option value="">Change</option>
+<option value="pending">Pending</option>
+<option value="preparing">Preparing</option>
+<option value="out of delivery">Out Of Delivery</option>
+</select>
+
+</div>
+
+{data.shopOrders.status=="out of delivery" && 
+<div className="mt-3 p-2 border rounded-lg text-sm bg-orange-50 gap-4">
+    {data.shopOrders.assignedDeliveryBoy?<p>Assigned Delivery Boy:</p>:<p>Available Delivery Boys:</p>}
+   {availableBoys?.length>0?(
+     availableBoys.map((b,index)=>(
+        <div className='text-gray-800'>{b.fullName}-{b.mobile}</div>
+     ))
+   ):data.shopOrders.assignedDeliveryBoy?<div>{data.shopOrders.assignedDeliveryBoy.fullName}-{data.shopOrders.assignedDeliveryBoy.mobile}</div>:<div>Waiting for delivery boy to accept</div>}
+</div>}
+
+<div className='text-right font-bold text-gray-800 text-sm'>
+ Total: ₹{data.shopOrders.subtotal}
+</div>
+        </div>
+    )
+}
+
+export default OwnerOrderCard
+</file>
+
+<file path="src/components/ShopCard.jsx">
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FaStore, FaLocationDot } from "react-icons/fa6"
+
+function ShopCard({ data }) {
+    const navigate = useNavigate()
+    
+    const handleViewShop = (e) => {
+        e.stopPropagation()
+        navigate(`/shop/${data._id}`)
+    }
+
+    return (
+        <div className='bg-white rounded-lg shadow p-4 space-y-4 hover:shadow-xl transition-shadow cursor-pointer border border-orange-100' onClick={() => navigate(`/shop/${data._id}`)}>
+            <div className='flex gap-4'>
+                {/* Shop Image */}
+                <div className='w-32 h-32 flex-shrink-0 rounded-lg overflow-hidden border'>
+                    <img 
+                        src={data.image} 
+                        alt={data.name} 
+                        className='w-full h-full object-cover'
+                    />
+                </div>
+
+                {/* Shop Details */}
+                <div className='flex-1 flex flex-col justify-between'>
+                    <div>
+                        <h2 className='text-xl font-semibold text-gray-800 flex items-center gap-2'>
+                            <FaStore className='text-[#ff4d2d]' />
+                            {data.name}
+                        </h2>
+                        <p className='text-sm text-gray-600 mt-1 flex items-center gap-1'>
+                            <FaLocationDot className='text-[#ff4d2d]' size={14} />
+                            {data.address}
+                        </p>
+                        <p className='text-sm text-gray-500 mt-1'>
+                            {data.city}, {data.state}
+                        </p>
+                    </div>
+
+                    {/* Items Count */}
+                    {data.items && (
+                        <div className='mt-3'>
+                            <span className='inline-block bg-orange-100 text-[#ff4d2d] text-xs font-semibold px-3 py-1 rounded-full'>
+                                {data.items.length} {data.items.length === 1 ? 'Item' : 'Items'} Available
+                            </span>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* View Shop Button */}
+            <div className='flex justify-end pt-2 border-t border-gray-100'>
+                <button 
+                    className='bg-[#ff4d2d] hover:bg-[#e64526] text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors'
+                    onClick={handleViewShop}
+                >
+                    View Shop
+                </button>
+            </div>
+        </div>
+    )
+}
+
+export default ShopCard
+</file>
+
+<file path="src/components/StationCard.jsx">
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { updateSelectedStation } from "../redux/train.slice";
+
+export default function StationCard({ item }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const primaryColor = "#ff4d2d";
+    const hoverColor = "#e64323";
+    
+    const handleStationClick = (stationName) => {
+        // Clear the selected station to hide floating window
+        dispatch(updateSelectedStation(""))
+        navigate("/shops-list", { state: { stationName } })
+    }
+    
+    return (
+        <div
+            className="w-full rounded-lg p-4 mb-3 shadow-sm transition-all"
+            style={{
+                backgroundColor: "#fff9f6",
+                border: "1px solid #ddd"
+            }}
+        >
+            {/* Top Row */}
+            <div className="flex justify-between items-center mb-2">
+                <span className="font-semibold text-gray-800 text-lg">
+                    Stop #{item.stopNumber || ""}
+                </span>
+
+                <span
+                    className="px-3 py-1 rounded text-white text-sm"
+                    style={{ backgroundColor: "#ff4d2d" }}
+                >
+                    Day {item.journeyDay}
+                </span>
+            </div>
+
+            {/* Station Name */}
+            <div className="mb-3">
+                <div className="text-xl font-bold text-gray-900">
+                    {item.station.name}
+                </div>
+                <div className="text-sm text-gray-600">
+                    Code: {item.station.code}
+                </div>
+            </div>
+
+            {/* Info Section */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+
+                <div className="p-3 rounded bg-white border" style={{ borderColor: "#ddd" }}>
+                    <p className="text-gray-500">Distance</p>
+                    <p className="font-semibold">{item.distanceKilometers} km</p>
+                </div>
+
+                <div className="p-3 rounded bg-white border" style={{ borderColor: "#ddd" }}>
+                    <p className="text-gray-500">Arrival</p>
+                    <p className="font-semibold">{item.schedule.arrival}</p>
+                </div>
+
+                <div className="p-3 rounded bg-white border" style={{ borderColor: "#ddd" }}>
+                    <p className="text-gray-500">Departure</p>
+                    <p className="font-semibold">{item.schedule.departure}</p>
+                </div>
+
+                <div className="p-3 rounded bg-white border" style={{ borderColor: "#ddd" }}>
+                    <p className="text-gray-500">Halt</p>
+                    <p className="font-semibold">{item.schedule.haltMinutes} min</p>
+                </div>
+
+            </div>
+
+            {/* Footer */}
+            <div className="mt-4 flex justify-between items-center text-sm">
+                <span className="text-gray-600">
+                    Loco Reversal:{" "}
+                    {item.isLocoReversal ? (
+                        <span className="text-green-600 font-semibold">Yes</span>
+                    ) : (
+                        <span className="text-red-500 font-semibold">No</span>
+                    )}
+                </span>
+
+                <button
+                    className="px-4 py-2 rounded text-white transition"
+                    style={{ backgroundColor: primaryColor }}
+                    onClick={(e)=>{
+                        e.stopPropagation();
+                        handleStationClick(item.station.name)
+                    }}
+                    onMouseOver={(e) => (e.target.style.backgroundColor = hoverColor)}
+                    onMouseOut={(e) => (e.target.style.backgroundColor = primaryColor)}
+                >
+                    Order Now
+                </button>
+            </div>
+        </div>
+    );
+}
+</file>
+
+<file path="src/components/UserDashboard.jsx">
+import React, { useEffect, useRef, useState } from 'react'
+import Nav from './Nav'
+import { categories } from '../category'
+import CategoryCard from './CategoryCard'
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import { FaCircleChevronRight } from "react-icons/fa6";
+import { useSelector } from 'react-redux';
+import FoodCard from './FoodCard';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { serverUrl } from '../App';
+import FloatingDeliveryBar from './FloatingStation';
+
+function UserDashboard() {
+  const { currentCity, shopInMyCity, itemsInMyCity, searchItems } = useSelector(state => state.user)
+  const cateScrollRef = useRef()
+  const shopScrollRef = useRef()
+  const navigate = useNavigate()
+  const [showLeftCateButton, setShowLeftCateButton] = useState(false)
+  const [showRightCateButton, setShowRightCateButton] = useState(false)
+  const [showLeftShopButton, setShowLeftShopButton] = useState(false)
+  const [showRightShopButton, setShowRightShopButton] = useState(false)
+  const [updatedItemsList, setUpdatedItemsList] = useState([])
+
+  const handleFilterByCategory = (category) => {
+    if (category == "All") {
+      setUpdatedItemsList(itemsInMyCity)
+    } else {
+      const filteredList = itemsInMyCity?.filter(i => i.category === category)
+      setUpdatedItemsList(filteredList)
+    }
+
+  }
+
+  useEffect(() => {
+    setUpdatedItemsList(itemsInMyCity)
+  }, [itemsInMyCity])
+
+
+  const updateButton = (ref, setLeftButton, setRightButton) => {
+    const element = ref.current
+    if (element) {
+      setLeftButton(element.scrollLeft > 0)
+      setRightButton(element.scrollLeft + element.clientWidth < element.scrollWidth)
+
+    }
+  }
+  const scrollHandler = (ref, direction) => {
+    if (ref.current) {
+      ref.current.scrollBy({
+        left: direction == "left" ? -200 : 200,
+        behavior: "smooth"
+      })
+    }
+  }
+
+      const stationSelected = useSelector(state => state.station?.seletectStation)
+
+
+  useEffect(() => {
+    if (cateScrollRef.current) {
+      updateButton(cateScrollRef, setShowLeftCateButton, setShowRightCateButton)
+      updateButton(shopScrollRef, setShowLeftShopButton, setShowRightShopButton)
+      cateScrollRef.current.addEventListener('scroll', () => {
+        updateButton(cateScrollRef, setShowLeftCateButton, setShowRightCateButton)
+      })
+      shopScrollRef.current.addEventListener('scroll', () => {
+        updateButton(shopScrollRef, setShowLeftShopButton, setShowRightShopButton)
+      })
+
+    }
+
+    return () => {
+      cateScrollRef?.current?.removeEventListener("scroll", () => {
+        updateButton(cateScrollRef, setShowLeftCateButton, setShowRightCateButton)
+      })
+      shopScrollRef?.current?.removeEventListener("scroll", () => {
+        updateButton(shopScrollRef, setShowLeftShopButton, setShowRightShopButton)
+      })
+    }
+
+  }, [categories])
+
+
+  return (
+    <div className='w-screen min-h-screen flex flex-col gap-5 items-center bg-[#fff9f6] overflow-y-auto'>
+      <Nav />
+
+      {searchItems && searchItems.length > 0 && (
+        <div className='w-full max-w-6xl flex flex-col gap-5 items-start p-5 bg-white shadow-md rounded-2xl mt-4'>
+          <h1 className='text-gray-900 text-2xl sm:text-3xl font-semibold border-b border-gray-200 pb-2'>
+            Search Results
+          </h1>
+          <div className='w-full h-auto flex flex-wrap gap-6 justify-center'>
+            {searchItems.map((item) => (
+              <FoodCard data={item} key={item._id} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="w-full max-w-6xl flex flex-col gap-5 items-start p-[10px]">
+
+        <h1 className='text-gray-800 text-2xl sm:text-3xl'>Inspiration for your first order</h1>
+        <div className='w-full relative'>
+          {showLeftCateButton && <button className='absolute left-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10' onClick={() => scrollHandler(cateScrollRef, "left")}><FaCircleChevronLeft />
+          </button>}
+
+
+          <div className='w-full flex overflow-x-auto gap-4 pb-2 ' ref={cateScrollRef}>
+            {categories.map((cate, index) => (
+              <CategoryCard name={cate.category} image={cate.image} key={index} onClick={() => handleFilterByCategory(cate.category)} />
+            ))}
+          </div>
+          {showRightCateButton && <button className='absolute right-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10' onClick={() => scrollHandler(cateScrollRef, "right")}>
+            <FaCircleChevronRight />
+          </button>}
+
+        </div>
+      </div>
+
+      <div className='w-full max-w-6xl flex flex-col gap-5 items-start p-[10px]'>
+        <h1 className='text-gray-800 text-2xl sm:text-3xl'>Best Shop in {currentCity}</h1>
+        <div className='w-full relative'>
+          {showLeftShopButton && <button className='absolute left-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10' onClick={() => scrollHandler(shopScrollRef, "left")}><FaCircleChevronLeft />
+          </button>}
+
+
+          <div className='w-full flex overflow-x-auto gap-4 pb-2 ' ref={shopScrollRef}>
+            {shopInMyCity?.map((shop, index) => (
+              <CategoryCard name={shop.name} image={shop.image} key={index} onClick={() => navigate(`/shop/${shop._id}`)} />
+            ))}
+          </div>
+          {showRightShopButton && <button className='absolute right-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10' onClick={() => scrollHandler(shopScrollRef, "right")}>
+            <FaCircleChevronRight />
+          </button>}
+
+        </div>
+      </div>
+
+      <div className='w-full max-w-6xl flex flex-col gap-5 items-start p-[10px]'>
+        <h1 className='text-gray-800 text-2xl sm:text-3xl'>
+          Suggested Items
+        </h1>
+
+        <div className='w-full h-auto flex flex-wrap gap-[20px] justify-center'>
+          {updatedItemsList?.map((item, index) => (
+            <FoodCard key={index} data={item} />
+          ))}
+        </div>
+
+
+      </div>
+
+          {stationSelected.length != 0  ? <FloatingDeliveryBar item={stationSelected} /> : ""}
+    </div>
+  )
+}
+
+export default UserDashboard
+</file>
+
+<file path="src/components/UserOrderCard.jsx">
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { serverUrl } from '../App'
+
+function UserOrderCard({ data }) {
+    const navigate = useNavigate()
+    const [selectedRating, setSelectedRating] = useState({})//itemId:rating
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        return date.toLocaleString('en-GB', {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        })
+
+    }
+
+    const handleRating = async (itemId, rating) => {
+        try {
+            const result = await axios.post(`${serverUrl}/api/item/rating`, { itemId, rating }, { withCredentials: true })
+            setSelectedRating(prev => ({
+                ...prev, [itemId]: rating
+            }))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    return (
+        <div className='bg-white rounded-lg shadow p-4 space-y-4'>
+            <div className='flex justify-between border-b pb-2'>
+                <div>
+                    <p className='font-semibold'>
+                        order #{data._id.slice(-6)}
+                    </p>
+                    <p className='text-sm text-gray-500'>
+                        Date: {formatDate(data.createdAt)}
+                    </p>
+                </div>
+                <div className='text-right'>
+                    {data.paymentMethod == "cod" ? <p className='text-sm text-gray-500'>{data.paymentMethod?.toUpperCase()}</p> : <p className='text-sm text-gray-500 font-semibold'>Payment: {data.payment ? "true" : "false"}</p>}
+
+                    <p className='font-medium text-blue-600'>{data.shopOrders?.[0].status}</p>
+                </div>
+            </div>
+
+            {data.shopOrders.map((shopOrder, index) => (
+                <div className='"border rounded-lg p-3 bg-[#fffaf7] space-y-3' key={index}>
+                    <p>{shopOrder.shop.name}</p>
+
+                    <div className='flex space-x-4 overflow-x-auto pb-2'>
+                        {shopOrder.shopOrderItems.map((item, index) => (
+                            <div key={index} className='flex-shrink-0 w-40 border rounded-lg p-2 bg-white"'>
+                                <img src={item.item.image} alt="" className='w-full h-24 object-cover rounded' />
+                                <p className='text-sm font-semibold mt-1'>{item.name}</p>
+                                <p className='text-xs text-gray-500'>Qty: {item.quantity} x ₹{item.price}</p>
+
+                                {shopOrder.status == "delivered" && <div className='flex space-x-1 mt-2'>
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <button className={`text-lg ${selectedRating[item.item._id] >= star ? 'text-yellow-400' : 'text-gray-400'}`} onClick={() => handleRating(item.item._id,star)}>★</button>
+                                    ))}
+                                </div>}
+
+
+
+                            </div>
+                        ))}
+                    </div>
+                    <div className='flex justify-between items-center border-t pt-2'>
+                        <p className='font-semibold'>Subtotal: {shopOrder.subtotal}</p>
+                        <span className='text-sm font-medium text-blue-600'>{shopOrder.status}</span>
+                    </div>
+                </div>
+            ))}
+
+            <div className='flex justify-between items-center border-t pt-2'>
+                <p className='font-semibold'>Total: ₹{data.totalAmount}</p>
+                <button className='bg-[#ff4d2d] hover:bg-[#e64526] text-white px-4 py-2 rounded-lg text-sm' onClick={() => navigate(`/track-order/${data._id}`)}>Track Order</button>
+            </div>
+
+
+
+        </div>
+    )
+}
+
+export default UserOrderCard
+</file>
+
+<file path="src/hooks/useGetCity.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch, useSelector } from 'react-redux'
+import {  setCurrentAddress, setCurrentCity, setCurrentState, setUserData } from '../redux/userSlice'
+import { setAddress, setLocation } from '../redux/mapSlice'
+
+function useGetCity() {
+    const dispatch=useDispatch()
+    const {userData}=useSelector(state=>state.user)
+    const apiKey=import.meta.env.VITE_GEOAPIKEY
+    useEffect(()=>{
+navigator.geolocation.getCurrentPosition(async (position)=>{
+    console.log(position)
+    const latitude=position.coords.latitude
+    const longitude=position.coords.longitude
+    dispatch(setLocation({lat:latitude,lon:longitude}))
+    const result=await axios.get(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=${apiKey}`)
+  console.log(result.data)
+    dispatch(setCurrentCity(result?.data?.results[0].city||result?.data?.results[0].county
+))
+    dispatch(setCurrentState(result?.data?.results[0].state))
+     dispatch(setCurrentAddress(result?.data?.results[0].address_line2 || result?.data?.results[0].address_line1 ))
+  dispatch(setAddress(result?.data?.results[0].address_line2))
+})
+    },[userData])
+}
+
+export default useGetCity
+</file>
+
+<file path="src/hooks/useGetCurrentUser.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch } from 'react-redux'
+import { setUserData } from '../redux/userSlice'
+
+function useGetCurrentUser() {
+    const dispatch=useDispatch()
+  useEffect(()=>{
+  const fetchUser=async () => {
+    try {
+           const result=await axios.get(`${serverUrl}/api/user/current`,{withCredentials:true})
+            dispatch(setUserData(result.data))
+  
+    } catch (error) {
+        console.log(error)
+    }
+}
+fetchUser()
+ 
+  },[])
+}
+
+export default useGetCurrentUser
+</file>
+
+<file path="src/hooks/useGetItemsByCity.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { setItemsInMyCity, setShopsInMyCity, setUserData } from '../redux/userSlice'
+
+function useGetItemsByCity() {
+    const dispatch=useDispatch()
+    const {currentCity}=useSelector(state=>state.user)
+  useEffect(()=>{
+  const fetchItems=async () => {
+    try {
+           const result=await axios.get(`${serverUrl}/api/item/get-by-city/${currentCity}`,{withCredentials:true})
+            dispatch(setItemsInMyCity(result.data))
+           console.log(result.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+fetchItems()
+ 
+  },[currentCity])
+}
+
+export default useGetItemsByCity
+</file>
+
+<file path="src/hooks/useGetMyOrders.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { setMyOrders, setUserData } from '../redux/userSlice'
+import { setMyShopData } from '../redux/ownerSlice'
+
+function useGetMyOrders() {
+    const dispatch=useDispatch()
+    const {userData}=useSelector(state=>state.user)
+  useEffect(()=>{
+  const fetchOrders=async () => {
+    try {
+           const result=await axios.get(`${serverUrl}/api/order/my-orders`,{withCredentials:true})
+            dispatch(setMyOrders(result.data))
+   
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+  fetchOrders()
+
+ 
+  
+  },[userData])
+}
+
+export default useGetMyOrders
+</file>
+
+<file path="src/hooks/useGetMyShop.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserData } from '../redux/userSlice'
+import { setMyShopData } from '../redux/ownerSlice'
+
+function useGetMyshop() {
+    const dispatch=useDispatch()
+    const {userData}=useSelector(state=>state.user)
+  useEffect(()=>{
+  const fetchShop=async () => {
+    try {
+           const result=await axios.get(`${serverUrl}/api/shop/get-my`,{withCredentials:true})
+            dispatch(setMyShopData(result.data))
+  
+    } catch (error) {
+        console.log(error)
+    }
+}
+fetchShop()
+ 
+  },[userData])
+}
+
+export default useGetMyshop
+</file>
+
+<file path="src/hooks/useGetShopByCity.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { setShopsInMyCity, setUserData } from '../redux/userSlice'
+
+function useGetShopByCity() {
+    const dispatch=useDispatch()
+    const {currentCity}=useSelector(state=>state.user)
+  useEffect(()=>{
+  const fetchShops=async () => {
+    try {
+           const result=await axios.get(`${serverUrl}/api/shop/get-by-city/${currentCity}`,{withCredentials:true})
+            dispatch(setShopsInMyCity(result.data))
+           console.log(result.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+fetchShops()
+ 
+  },[currentCity])
+}
+
+export default useGetShopByCity
+</file>
+
+<file path="src/hooks/useUpdateLocation.jsx">
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { serverUrl } from '../App'
+import { useDispatch, useSelector } from 'react-redux'
+import {  setCurrentAddress, setCurrentCity, setCurrentState, setUserData } from '../redux/userSlice'
+import { setAddress, setLocation } from '../redux/mapSlice'
+
+function useUpdateLocation() {
+    const dispatch=useDispatch()
+    const {userData}=useSelector(state=>state.user)
+ 
+    useEffect(()=>{
+const updateLocation=async (lat,lon) => {
+    const result=await axios.post(`${serverUrl}/api/user/update-location`,{lat,lon},{withCredentials:true})
+    console.log(result.data)
+}
+
+navigator.geolocation.watchPosition((pos)=>{
+    updateLocation(pos.coords.latitude,pos.coords.longitude)
+})
+    },[userData])
+}
+
+export default useUpdateLocation
+</file>
+
+<file path="src/pages/AddItem.jsx">
+import React from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { FaUtensils } from "react-icons/fa";
+import { useState } from 'react';
+import { useRef } from 'react';
+import axios from 'axios';
+import { serverUrl } from '../App';
+import { setMyShopData } from '../redux/ownerSlice';
+import { ClipLoader } from 'react-spinners';
+import { FaShop } from "react-icons/fa6";
+
+function AddItem() {
+    const navigate = useNavigate()
+    const { myShopData } = useSelector(state => state.owner)
+    const [loading, setLoading] = useState(false)
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState(0)
+    const [frontendImage, setFrontendImage] = useState(null)
+    const [backendImage, setBackendImage] = useState(null)
+    const [category, setCategory] = useState("")
+    const [foodType, setFoodType] = useState("veg")
+    const categories = ["Item",
+        "Clothes",
+        "Wodden",
+        "Accessories",
+        "Headwaer",
+        "Painting",
+        "ayurvedic",
+        "Others",]
+    const dispatch = useDispatch()
+    const handleImage = (e) => {
+        const file = e.target.files[0]
+        setBackendImage(file)
+        setFrontendImage(URL.createObjectURL(file))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        try {
+            const formData = new FormData()
+            formData.append("name", name)
+            formData.append("category", category)
+            formData.append("foodType", foodType)
+            formData.append("price", price)
+            if (backendImage) {
+                formData.append("image", backendImage)
+            }
+            const result = await axios.post(`${serverUrl}/api/item/add-item`, formData, { withCredentials: true })
+            dispatch(setMyShopData(result.data))
+            setLoading(false)
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
+    }
+    return (
+        <div className='flex justify-center flex-col items-center p-6 bg-gradient-to-br from-orange-50 relative to-white min-h-screen'>
+            <div className='absolute top-[20px] left-[20px] z-[10] mb-[10px]' onClick={() => navigate("/")}>
+                <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+            </div>
+
+            <div className='max-w-lg w-full bg-white shadow-xl rounded-2xl p-8 border border-orange-100'>
+                <div className='flex flex-col items-center mb-6'>
+                    <div className='bg-orange-100 p-4 rounded-full mb-4'>
+                        <FaShop className='text-[#ff4d2d] w-16 h-16' />
+                    </div>
+                    <div className="text-3xl font-extrabold text-gray-900">
+                        Add Item
+                    </div>
+                </div>
+                <form className='space-y-5' onSubmit={handleSubmit}>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Name</label>
+                        <input type="text" placeholder='Enter Item Name' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                        />
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Item Image</label>
+                        <input type="file" accept='image/*' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' onChange={handleImage} />
+                        {frontendImage && <div className='mt-4'>
+                            <img src={frontendImage} alt="" className='w-full h-48 object-cover rounded-lg border' />
+                        </div>}
+
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Price</label>
+                        <input type="number" placeholder='0' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setPrice(e.target.value)}
+                            value={price}
+                        />
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Select Category</label>
+                        <select className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setCategory(e.target.value)}
+                            value={category}
+
+                        >
+                            <option value="">select Category</option>
+                            {categories.map((cate, index) => (
+                                <option value={cate} key={index}>{cate}</option>
+                            ))}
+
+                        </select>
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Select Food Type</label>
+                        <select className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setFoodType(e.target.value)}
+                            value={foodType}
+
+                        >
+                            <option value="veg" >Breakable</option>
+                            <option value="non veg" >UnBreakeable</option>
+
+
+
+
+                        </select>
+                    </div>
+
+                    <button className='w-full bg-[#ff4d2d] text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-orange-600 hover:shadow-lg transition-all duration-200 cursor-pointer' disabled={loading}>
+                        {loading ? <ClipLoader size={20} color='white' /> : "Save"}
+                    </button>
+                </form>
+            </div>
+
+
+
+        </div>
+    )
+}
+
+export default AddItem
+</file>
+
+<file path="src/pages/CartPage.jsx">
+import React from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import CartItemCard from '../components/CartItemCard';
+function CartPage() {
+    const navigate = useNavigate()
+    const { cartItems, totalAmount } = useSelector(state => state.user)
+    return (
+        <div className='min-h-screen bg-[#fff9f6] flex justify-center p-6'>
+            <div className='w-full max-w-[800px]'>
+                <div className='flex items-center gap-[20px] mb-6 '>
+                    <div className=' z-[10] ' onClick={() => navigate("/")}>
+                        <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+                    </div>
+                    <h1 className='"text-2xl font-bold  text-start'>Your Cart</h1>
+                </div>
+                {cartItems?.length == 0 ? (
+                    <p className='text-gray-500 text-lg text-center'>Your Cart is Empty</p>
+                ) : (<>
+                    <div className='space-y-4'>
+                        {cartItems?.map((item, index) => (
+                            <CartItemCard data={item} key={index} />
+                        ))}
+                    </div>
+                    <div className='mt-6 bg-white p-4 rounded-xl shadow flex justify-between items-center border'>
+
+                        <h1 className='text-lg font-semibold'>Total Amount</h1>
+                        <span className='text-xl font-bold text-[#ff4d2d]'>₹{totalAmount}</span>
+                    </div>
+                    <div className='mt-4 flex justify-end' > 
+                        <button className='bg-[#ff4d2d] text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-[#e64526] transition cursor-pointer' onClick={()=>navigate("/checkout")}>Proceed to CheckOut</button>
+                    </div>
+                </>
+                )}
+            </div>
+        </div>
+    )
+}
+
+export default CartPage
+</file>
+
+<file path="src/pages/CheckOut.jsx">
+import React, { useEffect, useState } from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoSearchOutline } from "react-icons/io5";
+import { TbCurrentLocation } from "react-icons/tb";
+import { IoLocationSharp } from "react-icons/io5";
+import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
+import { useDispatch, useSelector } from 'react-redux';
+import "leaflet/dist/leaflet.css"
+import { setAddress, setLocation } from '../redux/mapSlice';
+import { MdDeliveryDining } from "react-icons/md";
+import { FaCreditCard } from "react-icons/fa";
+import axios from 'axios';
+import { FaMobileScreenButton } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
+import { serverUrl } from '../App';
+import { addMyOrder, setTotalAmount } from '../redux/userSlice';
+function RecenterMap({ location }) {
+  if (location.lat && location.lon) {
+    const map = useMap()
+    map.setView([location.lat, location.lon], 16, { animate: true })
+  }
+  return null
+
+}
+
+function CheckOut() {
+  const { location, address } = useSelector(state => state.map)
+  const { cartItems, totalAmount, userData } = useSelector(state => state.user)
+  const [addressInput, setAddressInput] = useState("")
+  const [paymentMethod, setPaymentMethod] = useState("cod")
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const apiKey = import.meta.env.VITE_GEOAPIKEY
+  const deliveryFee = totalAmount > 500 ? 0 : 40
+  const AmountWithDeliveryFee = totalAmount + deliveryFee
+
+  const stationSelected = useSelector(state => state.station?.seletectStation)
+
+
+
+
+  const onDragEnd = (e) => {
+    const { lat, lng } = e.target._latlng
+    dispatch(setLocation({ lat, lon: lng }))
+    getAddressByLatLng(lat, lng)
+  }
+  const getCurrentLocation = () => {
+    const latitude = userData.location.coordinates[1]
+    const longitude = userData.location.coordinates[0]
+    dispatch(setLocation({ lat: latitude, lon: longitude }))
+    getAddressByLatLng(latitude, longitude)
+  }
+
+  const getAddressByLatLng = async (lat, lng) => {
+    try {
+
+      const result = await axios.get(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&format=json&apiKey=${apiKey}`)
+      dispatch(setAddress(result?.data?.results[0].address_line2))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getLatLngByAddress = async () => {
+    try {
+      const result = await axios.get(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(addressInput)}&apiKey=${apiKey}`)
+      const { lat, lon } = result.data.features[0].properties
+      dispatch(setLocation({ lat, lon }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handlePlaceOrder = async () => {
+    try {
+      const result = await axios.post(`${serverUrl}/api/order/place-order`, {
+        paymentMethod,
+        deliveryAddress: {
+          text: addressInput,
+          latitude: location.lat,
+          longitude: location.lon
+        },
+        totalAmount: AmountWithDeliveryFee,
+        cartItems
+      }, { withCredentials: true })
+
+      if (paymentMethod == "cod") {
+        dispatch(addMyOrder(result.data))
+        navigate("/order-placed")
+      } else {
+        const orderId = result.data.orderId
+        const razorOrder = result.data.razorOrder
+        openRazorpayWindow(orderId, razorOrder)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const openRazorpayWindow = (orderId, razorOrder) => {
+
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: razorOrder.amount,
+      currency: 'INR',
+      name: "Vingo",
+      description: "Item Delivery Website",
+      order_id: razorOrder.id,
+      handler: async function (response) {
+        try {
+          const result = await axios.post(`${serverUrl}/api/order/verify-payment`, {
+            razorpay_payment_id: response.razorpay_payment_id,
+            orderId
+          }, { withCredentials: true })
+          dispatch(addMyOrder(result.data))
+          navigate("/order-placed")
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+
+    const rzp = new window.Razorpay(options)
+    rzp.open()
+
+
+  }
+
+
+  useEffect(() => {
+    setAddressInput(address)
+  }, [address])
+  return (
+    <div className='min-h-screen bg-[#fff9f6] flex items-center justify-center p-6'>
+      <div className=' absolute top-[20px] left-[20px] z-[10]' onClick={() => navigate("/")}>
+        <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+      </div>
+      <div className='w-full max-w-[900px] bg-white rounded-2xl shadow-xl p-6 space-y-6'>
+        <h1 className='text-2xl font-bold text-gray-800'>Checkout</h1>
+
+        <section>
+          <h2 className='text-lg font-semibold mb-2 flex items-center gap-2 text-gray-800'><IoLocationSharp className='text-[#ff4d2d]' /> Delivery Location</h2>
+          <div className='flex gap-2 mb-3'>
+            <input type="text" className='flex-1 border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ff4d2d]' placeholder='Enter Your Delivery Address..' value={stationSelected} onChange={(e) => setAddressInput(e.target.value)} />
+            <button className='bg-[#ff4d2d] hover:bg-[#e64526] text-white px-3 py-2 rounded-lg flex items-center justify-center' onClick={getLatLngByAddress}><IoSearchOutline size={17} /></button>
+            <button className='bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg flex items-center justify-center' onClick={getCurrentLocation}><TbCurrentLocation size={17} /></button>
+          </div>
+          <div className='rounded-xl border overflow-hidden'>
+            <div className='h-64 w-full flex items-center justify-center'>
+              <MapContainer
+                className={"w-full h-full"}
+                center={[location?.lat, location?.lon]}
+                zoom={16}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <RecenterMap location={location} />
+                <Marker position={[location?.lat, location?.lon]} draggable eventHandlers={{ dragend: onDragEnd }} />
+
+
+              </MapContainer>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className='text-lg font-semibold mb-3 text-gray-800'>Payment Method</h2>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+            <div className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${paymentMethod === "cod" ? "border-[#ff4d2d] bg-orange-50 shadow" : "border-gray-200 hover:border-gray-300"
+              }`} onClick={() => setPaymentMethod("cod")}>
+
+              <span className='inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-100'>
+                <MdDeliveryDining className='text-green-600 text-xl' />
+              </span>
+              <div >
+                <p className='font-medium text-gray-800'>Cash On Delivery</p>
+                <p className='text-xs text-gray-500'>Pay when your Item arrives</p>
+              </div>
+
+            </div>
+            <div className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${paymentMethod === "online" ? "border-[#ff4d2d] bg-orange-50 shadow" : "border-gray-200 hover:border-gray-300"
+              }`} onClick={() => setPaymentMethod("online")}>
+
+              <span className='inline-flex h-10 w-10 items-center justify-center rounded-full bg-purple-100'>
+                <FaMobileScreenButton className='text-purple-700 text-lg' />
+              </span>
+              <span className='inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-100'>
+                <FaCreditCard className='text-blue-700 text-lg' />
+              </span>
+              <div>
+                <p className='font-medium text-gray-800'>UPI / Credit / Debit Card</p>
+                <p className='text-xs text-gray-500'>Pay Securely Online</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className='text-lg font-semibold mb-3 text-gray-800'>Order Summary</h2>
+          <div className='rounded-xl border bg-gray-50 p-4 space-y-2'>
+            {cartItems.map((item, index) => (
+              <div key={index} className='flex justify-between text-sm text-gray-700'>
+                <span>{item.name} x {item.quantity}</span>
+                <span>₹{item.price * item.quantity}</span>
+              </div>
+
+            ))}
+            <hr className='border-gray-200 my-2' />
+            <div className='flex justify-between font-medium text-gray-800'>
+              <span>Subtotal</span>
+              <span>{totalAmount}</span>
+            </div>
+            <div className='flex justify-between text-gray-700'>
+              <span>Delivery Fee</span>
+              <span>{deliveryFee == 0 ? "Free" : deliveryFee}</span>
+            </div>
+            <div className='flex justify-between text-lg font-bold text-[#ff4d2d] pt-2'>
+              <span>Total</span>
+              <span>{AmountWithDeliveryFee}</span>
+            </div>
+          </div>
+        </section>
+        <button className='w-full bg-[#ff4d2d] hover:bg-[#e64526] text-white py-3 rounded-xl font-semibold' onClick={handlePlaceOrder}> {paymentMethod == "cod" ? "Place Order" : "Pay & Place Order"}</button>
+
+      </div>
+    </div>
+  )
+}
+
+export default CheckOut
+</file>
+
+<file path="src/pages/CreateEditShop.jsx">
+import React from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { FaUtensils } from "react-icons/fa";
+import { useState } from 'react';
+import { useRef } from 'react';
+import axios from 'axios';
+import { serverUrl } from '../App';
+import { setMyShopData } from '../redux/ownerSlice';
+import { ClipLoader } from 'react-spinners';
+import { FaShop } from "react-icons/fa6";
+
+function CreateEditShop() {
+    const navigate = useNavigate()
+    const { myShopData } = useSelector(state => state.owner)
+    const { currentCity,currentState,currentAddress } = useSelector(state => state.user)
+    const [name,setName]=useState(myShopData?.name || "")
+     const [address,setAddress]=useState(myShopData?.address || currentAddress)
+     const [city,setCity]=useState(myShopData?.city || currentCity)
+       const [state,setState]=useState(myShopData?.state || currentState)
+       const [frontendImage,setFrontendImage]=useState(myShopData?.image || null)
+       const [backendImage,setBackendImage]=useState(null)
+       const [loading,setLoading]=useState(false)
+       const dispatch=useDispatch()
+       const handleImage=(e)=>{
+        const file=e.target.files[0]
+        setBackendImage(file)
+        setFrontendImage(URL.createObjectURL(file))
+       }
+
+       const handleSubmit=async (e)=>{
+        e.preventDefault()
+        setLoading(true)
+        try {
+           const formData=new FormData()
+           formData.append("name",name) 
+           formData.append("city",city) 
+           formData.append("state",state) 
+           formData.append("address",address) 
+           if(backendImage){
+            formData.append("image",backendImage)
+           }
+           const result=await axios.post(`${serverUrl}/api/shop/create-edit`,formData,{withCredentials:true})
+           dispatch(setMyShopData(result.data))
+          setLoading(false)
+          navigate("/")
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
+       }
+    return (
+        <div className='flex justify-center flex-col items-center p-6 bg-gradient-to-br from-orange-50 relative to-white min-h-screen'>
+            <div className='absolute top-[20px] left-[20px] z-[10] mb-[10px]' onClick={() => navigate("/")}>
+                <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+            </div>
+
+            <div className='max-w-lg w-full bg-white shadow-xl rounded-2xl p-8 border border-orange-100'>
+                <div className='flex flex-col items-center mb-6'>
+                    <div className='bg-orange-100 p-4 rounded-full mb-4'>
+                        <FaShop className='text-[#ff4d2d] w-16 h-16' />
+                    </div>
+                    <div className="text-3xl font-extrabold text-gray-900">
+                        {myShopData ? "Edit Shop" : "Add Shop"}
+                    </div>
+                </div>
+                <form className='space-y-5' onSubmit={handleSubmit}>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Name</label>
+                        <input type="text" placeholder='Enter Shop Name' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                        onChange={(e)=>setName(e.target.value)}
+                        value={name}
+                        />
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>shop Image</label>
+                        <input type="file" accept='image/*' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' onChange={handleImage}  />
+                        {frontendImage &&   <div className='mt-4'>
+                            <img src={frontendImage} alt="" className='w-full h-48 object-cover rounded-lg border'/>
+                        </div>}
+                      
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div>
+                           <label className='block text-sm font-medium text-gray-700 mb-1'>City</label>
+                        <input type="text" placeholder='City' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' onChange={(e)=>setCity(e.target.value)}
+                        value={city}/> 
+                        </div>
+                        <div>
+                            <label className='block text-sm font-medium text-gray-700 mb-1'>State</label>
+                        <input type="text" placeholder='State' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' onChange={(e)=>setState(e.target.value)}
+                        value={state}/> 
+                        </div>
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Address</label>
+                        <input type="text" placeholder='Enter Shop Address' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' onChange={(e)=>setAddress(e.target.value)}
+                        value={address}/> 
+                    </div>
+                    <button className='w-full bg-[#ff4d2d] text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-orange-600 hover:shadow-lg transition-all duration-200 cursor-pointer' disabled={loading}>
+                        {loading?<ClipLoader size={20} color='white'/>:"Save"}
+                    
+                    </button>
+                </form>
+            </div>
+                
+                
+
+        </div>
+    )
+}
+
+export default CreateEditShop
+</file>
+
+<file path="src/pages/EditItem.jsx">
+import React, { useEffect } from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FaUtensils } from "react-icons/fa";
+import { useState } from 'react';
+import { useRef } from 'react';
+import { FaShop } from "react-icons/fa6";
+
+import axios from 'axios';
+import { serverUrl } from '../App';
+import { setMyShopData } from '../redux/ownerSlice';
+import { ClipLoader } from 'react-spinners';
+function EditItem() {
+    const navigate = useNavigate()
+    const { myShopData } = useSelector(state => state.owner)
+    const { itemId } = useParams()
+    const [currentItem, setCurrentItem] = useState(null)
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState(0)
+    const [frontendImage, setFrontendImage] = useState("")
+    const [backendImage, setBackendImage] = useState(null)
+    const [category, setCategory] = useState("")
+    const [foodType, setFoodType] = useState("")
+    const [loading, setLoading] = useState(false)
+    const categories = ["Item",
+        "Clothes",
+        "Wodden",
+        "Accessories",
+        "Headwaer",
+        "Painting",
+        "ayurvedic",
+        "Others",]
+    const dispatch = useDispatch()
+    const handleImage = (e) => {
+        const file = e.target.files[0]
+        setBackendImage(file)
+        setFrontendImage(URL.createObjectURL(file))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        try {
+            const formData = new FormData()
+            formData.append("name", name)
+            formData.append("category", category)
+            formData.append("foodType", foodType)
+            formData.append("price", price)
+            if (backendImage) {
+                formData.append("image", backendImage)
+            }
+            const result = await axios.post(`${serverUrl}/api/item/edit-item/${itemId}`, formData, { withCredentials: true })
+            dispatch(setMyShopData(result.data))
+            setLoading(false)
+            navigate("/")
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        const handleGetItemById = async () => {
+            try {
+                const result = await axios.get(`${serverUrl}/api/item/get-by-id/${itemId}`, { withCredentials: true })
+                setCurrentItem(result.data)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        handleGetItemById()
+    }, [itemId])
+
+    useEffect(() => {
+        setName(currentItem?.name || "")
+        setPrice(currentItem?.price || 0)
+        setCategory(currentItem?.category || "")
+        setFoodType(currentItem?.foodType || "")
+        setFrontendImage(currentItem?.image || "")
+    }, [currentItem])
+    return (
+        <div className='flex justify-center flex-col items-center p-6 bg-gradient-to-br from-orange-50 relative to-white min-h-screen'>
+            <div className='absolute top-[20px] left-[20px] z-[10] mb-[10px]' onClick={() => navigate("/")}>
+                <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+            </div>
+
+            <div className='max-w-lg w-full bg-white shadow-xl rounded-2xl p-8 border border-orange-100'>
+                <div className='flex flex-col items-center mb-6'>
+                    <div className='bg-orange-100 p-4 rounded-full mb-4'>
+                        <FaShop className='text-[#ff4d2d] w-16 h-16' />
+                    </div>
+                    <div className="text-3xl font-extrabold text-gray-900">
+                        Edit Item
+                    </div>
+                </div>
+                <form className='space-y-5' onSubmit={handleSubmit}>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Name</label>
+                        <input type="text" placeholder='Enter Item Name' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                        />
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Item Image</label>
+                        <input type="file" accept='image/*' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500' onChange={handleImage} />
+                        {frontendImage && <div className='mt-4'>
+                            <img src={frontendImage} alt="" className='w-full h-48 object-cover rounded-lg border' />
+                        </div>}
+
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Price</label>
+                        <input type="number" placeholder='0' className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setPrice(e.target.value)}
+                            value={price}
+                        />
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Select Category</label>
+                        <select className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setCategory(e.target.value)}
+                            value={category}
+
+                        >
+                            <option value="">Select Category</option>
+                            {categories.map((cate, index) => (
+                                <option value={cate} key={index}>{cate}</option>
+                            ))}
+
+                        </select>
+                    </div>
+                    <div>
+                        <label className='block text-sm font-medium text-gray-700 mb-1'>Select Item Type</label>
+                        <select className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                            onChange={(e) => setFoodType(e.target.value)}
+                            value={foodType}
+
+                        >
+                            <option value="veg" >Breakable</option>
+                            <option value="non veg" >UnBreakeable</option>
+                        </select>
+                    </div>
+
+                    <button className='w-full bg-[#ff4d2d] text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-orange-600 hover:shadow-lg transition-all duration-200 cursor-pointer' disabled={loading}>
+                        {loading ? <ClipLoader size={20} color='white' /> : "Save"}
+
+                    </button>
+                </form>
+            </div>
+
+
+
+        </div>
+    )
+}
+
+export default EditItem
+</file>
+
+<file path="src/pages/ForgotPassword.jsx">
+import axios from 'axios';
+import React, { useState } from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
+import { serverUrl } from '../App';
+import { ClipLoader } from 'react-spinners';
+function ForgotPassword() {
+  const [step, setStep] = useState(1)
+  const [email,setEmail]=useState("")
+  const [otp,setOtp]=useState("")
+  const [newPassword,setNewPassword]=useState("")
+  const [confirmPassword,setConfirmPassword]=useState("")
+  const [err,setErr]=useState("")
+  const navigate=useNavigate()
+const [loading,setLoading]=useState(false)
+  const handleSendOtp=async () => {
+    setLoading(true)
+    try {
+      const result=await axios.post(`${serverUrl}/api/auth/send-otp`,{email},{withCredentials:true})
+      console.log(result)
+      setErr("")
+      setStep(2)
+      setLoading(false)
+    } catch (error) {
+       setErr(error.response.data.message)
+       setLoading(false)
+    }
+  }
+  const handleVerifyOtp=async () => {
+      setLoading(true)
+    try {
+      const result=await axios.post(`${serverUrl}/api/auth/verify-otp`,{email,otp},{withCredentials:true})
+      console.log(result)
+      setErr("")
+      setStep(3)
+        setLoading(false)
+    } catch (error) {
+        setErr(error?.response?.data?.message)
+          setLoading(false)
+    }
+  }
+  const handleResetPassword=async () => {
+    if(newPassword!=confirmPassword){
+      return null
+    }
+    setLoading(true)
+    try {
+      const result=await axios.post(`${serverUrl}/api/auth/reset-password`,{email,newPassword},{withCredentials:true})
+      setErr("")
+      console.log(result)
+        setLoading(false)
+      navigate("/signin")
+    } catch (error) {
+     setErr(error?.response?.data?.message)
+       setLoading(false)
+    }
+  }
+  return (
+    <div className='flex w-full items-center justify-center min-h-screen p-4 bg-[#fff9f6]'>
+      <div className='bg-white rounded-xl shadow-lg w-full max-w-md p-8'>
+        <div className='flex items-center  gap-4 mb-4'>
+          <IoIosArrowRoundBack size={30} className='text-[#ff4d2d] cursor-pointer' onClick={()=>navigate("/signin")}/>
+          <h1 className='text-2xl font-bold text-center text-[#ff4d2d]'>Forgot Password</h1>
+        </div>
+        {step == 1
+          &&
+          <div>
+ <div className='mb-6'>
+                    <label htmlFor="email" className='block text-gray-700 font-medium mb-1'>Email</label>
+                    <input type="email" className='w-full border-[1px] border-gray-200 rounded-lg px-3 py-2 focus:outline-none  ' placeholder='Enter your Email' onChange={(e)=>setEmail(e.target.value)} value={email} required/>
+                </div>
+                <button className={`w-full font-semibold py-2 rounded-lg transition duration-200 bg-[#ff4d2d] text-white hover:bg-[#e64323] cursor-pointer`} onClick={handleSendOtp} disabled={loading}>
+                {loading?<ClipLoader size={20} color='white'/>:"Send Otp"}
+            </button>
+                 {err && <p className='text-red-500 text-center my-[10px]'>*{err}</p>}
+          </div>}
+
+         {step == 2
+          &&
+          <div>
+ <div className='mb-6'>
+                    <label htmlFor="email" className='block text-gray-700 font-medium mb-1'>OTP</label>
+                    <input type="email" className='w-full border-[1px] border-gray-200 rounded-lg px-3 py-2 focus:outline-none  ' placeholder='Enter OTP' onChange={(e)=>setOtp(e.target.value)} value={otp} required/>
+                </div>
+                <button className={`w-full font-semibold py-2 rounded-lg transition duration-200 bg-[#ff4d2d] text-white hover:bg-[#e64323] cursor-pointer`} onClick={handleVerifyOtp} disabled={loading}>
+                {loading?<ClipLoader size={20} color='white'/>:"Verify"}
+            </button>
+                {err && <p className='text-red-500 text-center my-[10px]'>*{err}</p>}
+          </div>}
+          {step == 3
+          &&
+          <div>
+ <div className='mb-6'>
+                    <label htmlFor="newPassword" className='block text-gray-700 font-medium mb-1'>New Password</label>
+                    <input type="email" className='w-full border-[1px] border-gray-200 rounded-lg px-3 py-2 focus:outline-none  ' placeholder='Enter New Password' onChange={(e)=>setNewPassword(e.target.value)} value={newPassword}/>
+                </div>
+                <div className='mb-6'>
+                    <label htmlFor="ConfirmPassword" className='block text-gray-700 font-medium mb-1'>Confirm Password</label>
+                    <input type="email" className='w-full border-[1px] border-gray-200 rounded-lg px-3 py-2 focus:outline-none  ' placeholder='Confirm Password' onChange={(e)=>setConfirmPassword(e.target.value)} value={confirmPassword} required/>
+                </div>
+                <button className={`w-full font-semibold py-2 rounded-lg transition duration-200 bg-[#ff4d2d] text-white hover:bg-[#e64323] cursor-pointer`} onClick={handleResetPassword} disabled={loading}>
+                {loading?<ClipLoader size={20} color='white'/>:"Reset Password"}
+            </button>
+                {err && <p className='text-red-500 text-center my-[10px]'>*{err}</p>}
+          </div>}
+      </div>
+    </div>
+  )
+}
+
+export default ForgotPassword
+</file>
+
+<file path="src/pages/Home.jsx">
+import React from 'react'
+import { useSelector } from 'react-redux'
+import UserDashboard from '../components/UserDashboard'
+import OwnerDashboard from '../components/OwnerDashboard'
+import DeliveryBoy from '../components/DeliveryBoy'
+
+function Home() {
+    const {userData}=useSelector(state=>state.user)
+  return (
+    <div className='w-[100vw] min-h-[100vh] pt-[100px] flex flex-col items-center bg-[#fff9f6]'>
+      {userData.role=="user" && <UserDashboard/>}
+      {userData.role=="owner" && <OwnerDashboard/>}
+      {userData.role=="deliveryBoy" && <DeliveryBoy/>}
+    </div>
+  )
+}
+
+export default Home
+</file>
+
+<file path="src/pages/MyOrders.jsx">
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
+import UserOrderCard from '../components/UserOrderCard';
+import OwnerOrderCard from '../components/OwnerOrderCard';
+import { setMyOrders, updateOrderStatus, updateRealtimeOrderStatus } from '../redux/userSlice';
+
+
+function MyOrders() {
+  const { userData, myOrders, socket } = useSelector(state => state.user)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    socket?.on('newOrder', (data) => {
+      if (data.shopOrders?.owner._id == userData._id) {
+        dispatch(setMyOrders([data, ...myOrders]))
+      }
+    })
+
+    socket?.on('update-status', ({ orderId, shopId, status, userId }) => {
+      if (userId == userData._id) {
+        dispatch(updateRealtimeOrderStatus({ orderId, shopId, status }))
+      }
+    })
+
+    return () => {
+      socket?.off('newOrder')
+      socket?.off('update-status')
+    }
+  }, [socket])
+
+
+
+
+  return (
+    <div className='"w-full min-h-screen bg-[#fff9f6] flex justify-center px-4'>
+      <div className='w-full max-w-[800px] p-4'>
+
+        <div className='flex items-center gap-[20px] mb-6 '>
+          <div className=' z-[10] ' onClick={() => navigate("/")}>
+            <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+          </div>
+          <h1 className='text-2xl font-bold  text-start'>My Orders</h1>
+        </div>
+        <div className='space-y-6'>
+          {myOrders?.map((order, index) => (
+            userData.role == "user" ?
+              (
+                <UserOrderCard data={order} key={index} />
+              )
+              :
+              userData.role == "owner" ? (
+                <OwnerOrderCard data={order} key={index} />
+              )
+                :
+                null
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default MyOrders
+</file>
+
+<file path="src/pages/OrderPlaced.jsx">
+import React from 'react'
+import { FaCircleCheck } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
+function OrderPlaced() {
+    const navigate=useNavigate()
+  return (
+    <div className='min-h-screen bg-[#fff9f6] flex flex-col justify-center items-center px-4 text-center relative overflow-hidden'>
+      <FaCircleCheck className='text-green-500 text-6xl mb-4'/>
+      <h1 className='text-3xl font-bold text-gray-800 mb-2'>Order Placed!
+      </h1>
+      <p className='text-gray-600 max-w-md mb-6'>Thank you for your purchase. Your order is being prepared.  
+        You can track your order status in the "My Orders" section.
+     </p>
+     <button className='bg-[#ff4d2d] hover:bg-[#e64526] text-white px-6 py-3 rounded-lg text-lg font-medium transition' onClick={()=>navigate("/my-orders")}>Back to my orders</button>
+    </div>
+  )
+}
+
+export default OrderPlaced
+</file>
+
+<file path="src/pages/Shop.jsx">
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { serverUrl } from '../App'
+import { useNavigate, useParams } from 'react-router-dom'
+import { FaStore } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaUtensils } from "react-icons/fa";
+import FoodCard from '../components/FoodCard';
+import { FaArrowLeft } from "react-icons/fa";
+function Shop() {
+    const {shopId}=useParams()
+    const [items,setItems]=useState([])
+    const [shop,setShop]=useState([])
+    const navigate=useNavigate()
+    const handleShop=async () => {
+        try {
+           const result=await axios.get(`${serverUrl}/api/item/get-by-shop/${shopId}`,{withCredentials:true}) 
+           setShop(result.data.shop)
+           setItems(result.data.items)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+handleShop()
+    },[shopId])
+  return (
+    <div className='min-h-screen bg-gray-50'>
+        <button className='absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white px-3 py-2 rounded-full shadow-md transition' onClick={()=>navigate("/")}>
+        <FaArrowLeft />
+<span>Back</span>
+        </button>
+      {shop && <div className='relative w-full h-64 md:h-80 lg:h-96'>
+          <img src={shop.image} alt="" className='w-full h-full object-cover'/>
+          <div className='absolute inset-0 bg-gradient-to-b from-black/70 to-black/30 flex flex-col justify-center items-center text-center px-4'>
+          <FaStore className='text-white text-4xl mb-3 drop-shadow-md'/>
+          <h1 className='text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg'>{shop.name}</h1>
+          <div className='flex items-center  gap-[10px]'>
+          <FaLocationDot size={22} color='red'/>
+             <p className='text-lg font-medium text-gray-200 mt-[10px]'>{shop.address}</p>
+             </div>
+          </div>
+       
+        </div>}
+
+<div className='max-w-7xl mx-auto px-6 py-10'>
+<h2 className='flex items-center justify-center gap-3 text-3xl font-bold mb-10 text-gray-800'><FaUtensils color='red'/> Our Menu</h2>
+
+{items.length>0?(
+    <div className='flex flex-wrap justify-center gap-8'>
+        {items.map((item)=>(
+            <FoodCard data={item}/>
+        ))}
+    </div>
+):<p className='text-center text-gray-500 text-lg'>No Items Available</p>}
+</div>
+
+
+
+    </div>
+  )
+}
+
+export default Shop
+</file>
+
+<file path="src/pages/ShopsList.jsx">
+import React, { useEffect, useState } from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io"
+import { useNavigate, useLocation } from 'react-router-dom'
+import ShopCard from '../components/ShopCard'
+import { FaStore } from "react-icons/fa6"
+import axios from 'axios'
+import { serverUrl } from '../App'
+import { ClipLoader } from 'react-spinners'
+
+function ShopsList() {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const stationName = location.state?.stationName || ""
+    const [shops, setShops] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchShopsByStation = async () => {
+            if (!stationName) {
+                navigate("/")
+                return
+            }
+            
+            setLoading(true)
+            try {
+                // Extract city name from station name (remove " Station" suffix)
+                const cityName = stationName.replace(" Station", "").trim()
+                
+                const result = await axios.get(`${serverUrl}/api/shop/get-by-city/${cityName}`, { withCredentials: true })
+                setShops(result.data)
+                setLoading(false)
+            } catch (error) {
+                console.log(error)
+                setLoading(false)
+            }
+        }
+        
+        fetchShopsByStation()
+    }, [stationName, navigate])
+
+    return (
+        <div className='w-full min-h-screen bg-[#fff9f6] flex justify-center px-4'>
+            <div className='w-full max-w-[800px] p-4'>
+                {/* Header */}
+                <div className='flex items-center gap-4 mb-6'>
+                    <div className='z-[10] cursor-pointer' onClick={() => navigate(-1)}>
+                        <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+                    </div>
+                    <div className='flex-1'>
+                        <h1 className='text-2xl font-bold text-gray-800'>
+                            Shops at {stationName}
+                        </h1>
+                        <p className='text-sm text-gray-500 mt-1'>
+                            {loading ? 'Loading...' : `${shops?.length || 0} ${shops?.length === 1 ? 'shop' : 'shops'} available`}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Loading State */}
+                {loading ? (
+                    <div className='flex justify-center items-center py-16'>
+                        <ClipLoader size={50} color='#ff4d2d' />
+                    </div>
+                ) : (
+                    /* Shops List */
+                    <div className='space-y-6'>
+                        {shops && shops.length > 0 ? (
+                            shops.map((shop, index) => (
+                                <ShopCard data={shop} key={index} />
+                            ))
+                        ) : (
+                            <div className='flex flex-col items-center justify-center py-16'>
+                                <FaStore className='text-gray-300 text-6xl mb-4' />
+                                <p className='text-gray-500 text-lg text-center'>
+                                    No shops available at {stationName}
+                                </p>
+                                <p className='text-gray-400 text-sm mt-2'>
+                                    Check back later for new shops!
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+}
+
+export default ShopsList
+</file>
+
+<file path="src/pages/SignIn.jsx">
+import React from 'react'
+import { useState } from 'react';
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios"
+import { serverUrl } from '../App';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { ClipLoader } from 'react-spinners';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../redux/userSlice';
+function SignIn() {
+    const primaryColor = "#ff4d2d";
+    const hoverColor = "#e64323";
+    const bgColor = "#fff9f6";
+    const borderColor = "#ddd";
+    const [showPassword, setShowPassword] = useState(false)
+    const navigate=useNavigate()
+    const [email,setEmail]=useState("")
+    const [password,setPassword]=useState("")
+    const [err,setErr]=useState("")
+    const [loading,setLoading]=useState(false)
+    const dispatch=useDispatch()
+     const handleSignIn=async () => {
+        setLoading(true)
+        try {
+            const result=await axios.post(`${serverUrl}/api/auth/signin`,{
+                email,password
+            },{withCredentials:true})
+           dispatch(setUserData(result.data))
+            setErr("")
+            setLoading(false)
+        } catch (error) {
+           setErr(error?.response?.data?.message)
+           setLoading(false)
+        }
+     }
+     const handleGoogleAuth=async () => {
+             const provider=new GoogleAuthProvider()
+             const result=await signInWithPopup(auth,provider)
+       try {
+         const {data}=await axios.post(`${serverUrl}/api/auth/google-auth`,{
+             email:result.user.email,
+         },{withCredentials:true})
+         dispatch(setUserData(data))
+       } catch (error) {
+         console.log(error)
+       }
+          }
+    return (
+        <div className='min-h-screen w-full flex items-center justify-center p-4' style={{ backgroundColor: bgColor }}>
+            <div className={`bg-white rounded-xl shadow-lg w-full max-w-md p-8 border-[1px] `} style={{
+                border: `1px solid ${borderColor}`
+            }}>
+                <h1 className={`text-3xl font-bold mb-2 `} style={{ color: primaryColor }}>Smart Cart</h1>
+                <p className='text-gray-600 mb-8'> Sign In to your account to get started.
+                </p>
+
+              
+                {/* email */}
+
+                <div className='mb-4'>
+                    <label htmlFor="email" className='block text-gray-700 font-medium mb-1'>Email</label>
+                    <input type="email" className='w-full border rounded-lg px-3 py-2 focus:outline-none ' placeholder='Enter your Email' style={{ border: `1px solid ${borderColor}` }} onChange={(e)=>setEmail(e.target.value)} value={email} required/>
+                </div>
+                {/* password*/}
+
+                <div className='mb-4'>
+                    <label htmlFor="password" className='block text-gray-700 font-medium mb-1'>Password</label>
+                    <div className='relative'>
+                        <input type={`${showPassword ? "text" : "password"}`} className='w-full border rounded-lg px-3 py-2 focus:outline-none pr-10' placeholder='Enter your password' style={{ border: `1px solid ${borderColor}` }} onChange={(e)=>setPassword(e.target.value)} value={password} required/>
+
+                        <button className='absolute right-3 cursor-pointer top-[14px] text-gray-500' onClick={() => setShowPassword(prev => !prev)}>{!showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</button>
+                    </div>
+                </div>
+                <div className='text-right mb-4 cursor-pointer text-[#ff4d2d] font-medium' onClick={()=>navigate("/forgot-password")}>
+                  Forgot Password
+                </div>
+              
+
+            <button className={`w-full font-semibold py-2 rounded-lg transition duration-200 bg-[#ff4d2d] text-white hover:bg-[#e64323] cursor-pointer`} onClick={handleSignIn} disabled={loading}>
+                {loading?<ClipLoader size={20} color='white'/>:"Sign In"}
+            </button>
+      {err && <p className='text-red-500 text-center my-[10px]'>*{err}</p>}
+
+            <button className='w-full mt-4 flex items-center justify-center gap-2 border rounded-lg px-4 py-2 transition cursor-pointer duration-200 border-gray-400 hover:bg-gray-100' onClick={handleGoogleAuth}>
+<FcGoogle size={20}/>
+<span>Sign In with Google</span>
+            </button>
+            <p className='text-center mt-6 cursor-pointer' onClick={()=>navigate("/signup")}>Want to create a new account ?  <span className='text-[#ff4d2d]'>Sign Up</span></p>
+            </div>
+        </div>
+    )
+}
+
+export default SignIn
+</file>
+
+<file path="src/pages/SignUp.jsx">
+import React from 'react'
+import { useState } from 'react';
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios"
+import { serverUrl } from '../App';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { ClipLoader } from "react-spinners"
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../redux/userSlice';
+function SignUp() {
+    const primaryColor = "#ff4d2d";
+    const hoverColor = "#e64323";
+    const bgColor = "#fff9f6";
+    const borderColor = "#ddd";
+    const [showPassword, setShowPassword] = useState(false)
+    const [role, setRole] = useState("user")
+    const navigate=useNavigate()
+    const [fullName,setFullName]=useState("")
+    const [email,setEmail]=useState("")
+    const [password,setPassword]=useState("")
+    const [mobile,setMobile]=useState("")
+    const [err,setErr]=useState("")
+    const [loading,setLoading]=useState(false)
+    const dispatch=useDispatch()
+     const handleSignUp=async () => {
+        setLoading(true)
+        try {
+            const result=await axios.post(`${serverUrl}/api/auth/signup`,{
+                fullName,email,password,mobile,role
+            },{withCredentials:true})
+            dispatch(setUserData(result.data))
+            setErr("")
+            setLoading(false)
+        } catch (error) {
+            setErr(error?.response?.data?.message)
+             setLoading(false)
+        }
+     }
+
+     const handleGoogleAuth=async () => {
+        if(!mobile){
+          return setErr("mobile no is required")
+        }
+        const provider=new GoogleAuthProvider()
+        const result=await signInWithPopup(auth,provider)
+  try {
+    const {data}=await axios.post(`${serverUrl}/api/auth/google-auth`,{
+        fullName:result.user.displayName,
+        email:result.user.email,
+        role,
+        mobile
+    },{withCredentials:true})
+   dispatch(setUserData(data))
+  } catch (error) {
+    console.log(error)
+  }
+     }
+    return (
+        <div className='min-h-screen w-full flex items-center justify-center p-4' style={{ backgroundColor: bgColor }}>
+            <div className={`bg-white rounded-xl shadow-lg w-full max-w-md p-8 border-[1px] `} style={{
+                border: `1px solid ${borderColor}`
+            }}>
+                <h1 className={`text-3xl font-bold mb-2 `} style={{ color: primaryColor }}>Smart Cart</h1>
+                <p className='text-gray-600 mb-8'> Create your account to get started.
+                </p>
+
+                {/* fullName */}
+
+                <div className='mb-4'>
+                    <label htmlFor="fullName" className='block text-gray-700 font-medium mb-1'>Full Name</label>
+                    <input type="text" className='w-full border rounded-lg px-3 py-2 focus:outline-none ' placeholder='Enter your Full Name' style={{ border: `1px solid ${borderColor}` }} onChange={(e)=>setFullName(e.target.value)} value={fullName} required/>
+                </div>
+                {/* email */}
+
+                <div className='mb-4'>
+                    <label htmlFor="email" className='block text-gray-700 font-medium mb-1'>Email</label>
+                    <input type="email" className='w-full border rounded-lg px-3 py-2 focus:outline-none ' placeholder='Enter your Email' style={{ border: `1px solid ${borderColor}` }} onChange={(e)=>setEmail(e.target.value)} value={email} required/>
+                </div>
+                {/* mobile*/}
+
+                <div className='mb-4'>
+                    <label htmlFor="mobile" className='block text-gray-700 font-medium mb-1'>Mobile</label>
+                    <input type="email" className='w-full border rounded-lg px-3 py-2 focus:outline-none ' placeholder='Enter your Mobile Number' style={{ border: `1px solid ${borderColor}` }} onChange={(e)=>setMobile(e.target.value)} value={mobile} required/>
+                </div>
+                {/* password*/}
+
+                <div className='mb-4'>
+                    <label htmlFor="password" className='block text-gray-700 font-medium mb-1'>Password</label>
+                    <div className='relative'>
+                        <input type={`${showPassword ? "text" : "password"}`} className='w-full border rounded-lg px-3 py-2 focus:outline-none pr-10' placeholder='Enter your password' style={{ border: `1px solid ${borderColor}` }} onChange={(e)=>setPassword(e.target.value)} value={password} required/>
+
+                        <button className='absolute right-3 cursor-pointer top-[14px] text-gray-500' onClick={() => setShowPassword(prev => !prev)}>{!showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</button>
+                    </div>
+                </div>
+                {/* role*/}
+
+                <div className='mb-4'>
+                    <label htmlFor="role" className='block text-gray-700 font-medium mb-1'>Role</label>
+                    <div className='flex gap-2'>
+                        {["user", "owner", "deliveryBoy"].map((r) => (
+                            <button
+                                className='flex-1 border rounded-lg px-3 py-2 text-center font-medium transition-colors cursor-pointer'
+                                onClick={()=>setRole(r)}
+                                style={
+                                   role==r?
+                                   {backgroundColor:primaryColor,color:"white"}
+                                   :{border:`1px solid ${primaryColor}`,color:primaryColor}
+                                }>
+                                {r}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+            <button className={`w-full font-semibold py-2 rounded-lg transition duration-200 bg-[#ff4d2d] text-white hover:bg-[#e64323] cursor-pointer`} onClick={handleSignUp} disabled={loading}>
+                {loading?<ClipLoader size={20} color='white'/>:"Sign Up"}
+            
+            </button>
+            {err && <p className='text-red-500 text-center my-[10px]'>*{err}</p>}
+            
+
+            <button className='w-full mt-4 flex items-center justify-center gap-2 border rounded-lg px-4 py-2 transition cursor-pointer duration-200 border-gray-400 hover:bg-gray-100' onClick={handleGoogleAuth}>
+<FcGoogle size={20}/>
+<span>Sign up with Google</span>
+            </button>
+            <p className='text-center mt-6 cursor-pointer' onClick={()=>navigate("/signin")}>Already have an account ?  <span className='text-[#ff4d2d]'>Sign In</span></p>
+            </div>
+        </div>
+    )
+}
+
+export default SignUp
+</file>
+
+<file path="src/pages/StationSearchPage.jsx">
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom"
+import Nav from "../components/Nav";
+import StationCard from "../components/StationCard";
+import { useSelector } from "react-redux";
+import FloatingDeliveryBar from "../components/FloatingStation";
+
+export default function StationSearchPage() {
+    const [searchParams] = useSearchParams();
+    const q = searchParams.get("q") || "";
+    const date = searchParams.get("date") || "";
+    const stationSelected = useSelector(state => state.station?.seletectStation)
+    console.log(stationSelected)
+    const [results, setResults] = useState();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/search/?trainNo=${q}&trainDate=${date}`).then(response => {
+            setResults(response.data.data)
+        })
+    }, [])
+    console.log(results)
+    return <div className='w-screen min-h-screen flex flex-col gap-5 items-center bg-[#fff9f6] overflow-y-auto'>
+        <Nav />
+        <div className="w-full max-w-6xl flex flex-col gap-5 items-start p-[10px] m-30">
+            {
+                results ? <>
+                    <h1 className="text-2xl">Choose Station For Train {results.trainDetail.name}</h1>
+                    {
+                        results.station.map(item => {
+
+                            return <StationCard key={item.stopNumber + item.station.code} item={item} />
+                        })
+                    }
+                </>
+                    : <>
+                        <h1>Loading</h1>
+                    </>
+            }
+        </div>
+        {stationSelected.length != 0  ? <FloatingDeliveryBar item={stationSelected} /> : ""}
+    </div>
+}
+</file>
+
+<file path="src/pages/TrackOrderPage.jsx">
+import axios from 'axios'
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { serverUrl } from '../App'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { IoIosArrowRoundBack } from "react-icons/io";
+import DeliveryBoyTracking from '../components/DeliveryBoyTracking'
+import { useSelector } from 'react-redux'
+function TrackOrderPage() {
+  const { orderId } = useParams()
+  const [currentOrder, setCurrentOrder] = useState()
+  const navigate = useNavigate()
+  const { socket } = useSelector(state => state.user)
+  const [liveLocations, setLiveLocations] = useState({})
+  const handleGetOrder = async () => {
+    try {
+      const result = await axios.get(`${serverUrl}/api/order/get-order-by-id/${orderId}`, { withCredentials: true })
+      setCurrentOrder(result.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    socket.on('updateDeliveryLocation', ({ deliveryBoyId, latitude, longitude }) => {
+      setLiveLocations(prev => ({
+        ...prev,
+        [deliveryBoyId]: { lat: latitude, lon: longitude }
+      }))
+    })
+  }, [socket])
+
+  useEffect(() => {
+    handleGetOrder()
+  }, [orderId])
+  return (
+    <div className='max-w-4xl mx-auto p-4 flex flex-col gap-6'>
+      <div className='relative flex items-center gap-4 top-[20px] left-[20px] z-[10] mb-[10px]' onClick={() => navigate("/")}>
+        <IoIosArrowRoundBack size={35} className='text-[#ff4d2d]' />
+        <h1 className='text-2xl font-bold md:text-center'>Track Order</h1>
+      </div>
+      {currentOrder?.shopOrders?.map((shopOrder, index) => (
+        <div className='bg-white p-4 rounded-2xl shadow-md border border-orange-100 space-y-4' key={index}>
+          <div>
+            <p className='text-lg font-bold mb-2 text-[#ff4d2d]'>{shopOrder.shop.name}</p>
+            <p className='font-semibold'><span>Items:</span> {shopOrder.shopOrderItems?.map(i => i.name).join(",")}</p>
+            <p><span className='font-semibold'>Subtotal:</span> {shopOrder.subtotal}</p>
+            <p className='mt-6'><span className='font-semibold'>Delivery address:</span> {currentOrder.deliveryAddress?.text}</p>
+          </div>
+          {shopOrder.status != "delivered" ? <>
+            {shopOrder.assignedDeliveryBoy ?
+              <div className='text-sm text-gray-700'>
+                <p className='font-semibold'><span>Delivery Boy Name:</span> {shopOrder.assignedDeliveryBoy.fullName}</p>
+                <p className='font-semibold'><span>Delivery Boy contact No.:</span> {shopOrder.assignedDeliveryBoy.mobile}</p>
+              </div> : <p className='font-semibold'>Delivery Boy is not assigned yet.</p>}
+          </> : <p className='text-green-600 font-semibold text-lg'>Delivered</p>}
+
+          {(shopOrder.assignedDeliveryBoy && shopOrder.status !== "delivered") && (
+            <div className="h-[400px] w-full rounded-2xl overflow-hidden shadow-md">
+              <DeliveryBoyTracking data={{
+                deliveryBoyLocation: liveLocations[shopOrder.assignedDeliveryBoy._id] || {
+                  lat: shopOrder.assignedDeliveryBoy.location.coordinates[1],
+                  lon: shopOrder.assignedDeliveryBoy.location.coordinates[0]
+                },
+                customerLocation: {
+                  lat: currentOrder.deliveryAddress.latitude,
+                  lon: currentOrder.deliveryAddress.longitude
+                }
+              }} />
+            </div>
+          )}
+
+
+
+        </div>
+      ))}
+
+
+
+    </div>
+  )
+}
+
+export default TrackOrderPage
+</file>
+
+<file path="src/redux/mapSlice.js">
+import { createSlice, current } from "@reduxjs/toolkit";
+
+const mapSlice=createSlice({
+    name:"user",
+    initialState:{
+       location:{
+        lat:null,
+        lon:null
+       },
+       address:null
+
+    },
+    reducers:{
+       setLocation:(state,action)=>{
+        const {lat,lon}=action.payload
+        state.location.lat=lat
+        state.location.lon=lon
+       },
+       setAddress:(state,action)=>{
+        state.address=action.payload
+       }
+       
+    }
+})
+
+export const {setAddress,setLocation}=mapSlice.actions
+export default mapSlice.reducer
+</file>
+
+<file path="src/redux/ownerSlice.js">
+import { createSlice } from "@reduxjs/toolkit";
+
+const ownerSlice=createSlice({
+    name:"owner",
+    initialState:{
+        myShopData:null
+    },
+    reducers:{
+        setMyShopData:(state,action)=>{
+        state.myShopData=action.payload
+        }
+    }
+})
+
+export const {setMyShopData}=ownerSlice.actions
+export default ownerSlice.reducer
+</file>
+
+<file path="src/redux/store.js">
+import { configureStore } from "@reduxjs/toolkit";
+import userSlice from "./userSlice"
+import ownerSlice from "./ownerSlice"
+import mapSlice from "./mapSlice"
+import stationSlice from "./train.slice"
+export const store=configureStore({
+    reducer:{
+        user:userSlice,
+        owner:ownerSlice,
+        map:mapSlice,
+        station: stationSlice
+    }
+})
+</file>
+
+<file path="src/redux/train.slice.js">
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+    seletectStation: ""
+};
+const trainSlice = createSlice({
+    name: "station",
+    initialState,
+    reducers: {
+        updateSelectedStation: (state, actions) => {
+            state.seletectStation = actions.payload
+        }
+    }
+})
+
+export const { updateSelectedStation } = trainSlice.actions;
+export default trainSlice.reducer
+</file>
+
+<file path="src/redux/userSlice.js">
+import { createSlice, current } from "@reduxjs/toolkit";
+
+const userSlice = createSlice({
+  name: "user",
+  initialState: {
+    userData: null,
+    currentCity: null,
+    currentState: null,
+    currentAddress: null,
+    shopInMyCity: null,
+    itemsInMyCity: null,
+    cartItems: [],
+    totalAmount: 0,
+    myOrders: [],
+    searchItems: null,
+    socket: null
+  },
+  reducers: {
+    setUserData: (state, action) => {
+      state.userData = action.payload
+    },
+    setCurrentCity: (state, action) => {
+      state.currentCity = action.payload
+    },
+    setCurrentState: (state, action) => {
+      state.currentState = action.payload
+    },
+    setCurrentAddress: (state, action) => {
+      state.currentAddress = action.payload
+    },
+    setShopsInMyCity: (state, action) => {
+      state.shopInMyCity = action.payload
+    },
+    setItemsInMyCity: (state, action) => {
+      state.itemsInMyCity = action.payload
+    },
+    setSocket: (state, action) => {
+      state.socket = action.payload
+    },
+    addToCart: (state, action) => {
+      const cartItem = action.payload
+      const existingItem = state.cartItems.find(i => i.id == cartItem.id)
+      if (existingItem) {
+        existingItem.quantity += cartItem.quantity
+      } else {
+        state.cartItems.push(cartItem)
+      }
+
+      state.totalAmount = state.cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
+
+    },
+
+    setTotalAmount: (state, action) => {
+      state.totalAmount = action.payload
+    }
+
+    ,
+
+    updateQuantity: (state, action) => {
+      const { id, quantity } = action.payload
+      const item = state.cartItems.find(i => i.id == id)
+      if (item) {
+        item.quantity = quantity
+      }
+      state.totalAmount = state.cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
+    },
+
+    removeCartItem: (state, action) => {
+      state.cartItems = state.cartItems.filter(i => i.id !== action.payload)
+      state.totalAmount = state.cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
+    },
+
+    setMyOrders: (state, action) => {
+      state.myOrders = action.payload
+    },
+    addMyOrder: (state, action) => {
+      state.myOrders = [action.payload, ...state.myOrders]
+    }
+
+    ,
+    updateOrderStatus: (state, action) => {
+      const { orderId, shopId, status } = action.payload
+      const order = state.myOrders.find(o => o._id == orderId)
+      if (order) {
+        if (order.shopOrders && order.shopOrders.shop._id == shopId) {
+          order.shopOrders.status = status
+        }
+      }
+    },
+
+    updateRealtimeOrderStatus: (state, action) => {
+      const { orderId, shopId, status } = action.payload
+      const order = state.myOrders.find(o => o._id == orderId)
+      if (order) {
+        const shopOrder = order.shopOrders.find(so => so.shop._id == shopId)
+        if (shopOrder) {
+          shopOrder.status = status
+        }
+      }
+    },
+
+    setSearchItems: (state, action) => {
+      state.searchItems = action.payload
+    }
+  }
+})
+
+export const { setUserData, setCurrentAddress, setCurrentCity, setCurrentState, setShopsInMyCity, setItemsInMyCity, addToCart, updateQuantity, removeCartItem, setMyOrders, addMyOrder, updateOrderStatus, setSearchItems, setTotalAmount, setSocket, updateRealtimeOrderStatus } = userSlice.actions
+export default userSlice.reducer
+</file>
+
+<file path="src/App.jsx">
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import SignUp from './pages/SignUp'
+import SignIn from './pages/SignIn'
+import ForgotPassword from './pages/ForgotPassword'
+import useGetCurrentUser from './hooks/useGetCurrentUser'
+import { useDispatch, useSelector } from 'react-redux'
+import Home from './pages/Home'
+import useGetCity from './hooks/useGetCity'
+import useGetMyshop from './hooks/useGetMyShop'
+import CreateEditShop from './pages/CreateEditShop'
+import AddItem from './pages/AddItem'
+import EditItem from './pages/EditItem'
+import useGetShopByCity from './hooks/useGetShopByCity'
+import useGetItemsByCity from './hooks/useGetItemsByCity'
+import CartPage from './pages/CartPage'
+import CheckOut from './pages/CheckOut'
+import OrderPlaced from './pages/OrderPlaced'
+import MyOrders from './pages/MyOrders'
+import useGetMyOrders from './hooks/useGetMyOrders'
+import useUpdateLocation from './hooks/useUpdateLocation'
+import TrackOrderPage from './pages/TrackOrderPage'
+import Shop from './pages/Shop'
+import { useEffect } from 'react'
+import { io } from 'socket.io-client'
+import { setSocket } from './redux/userSlice'
+import { SearchTrainStationList } from '../../backend/controllers/station.controller'
+import StationSearchPage from './pages/StationSearchPage'
+import ShopsList from './pages/ShopsList'
+
+export const serverUrl = "http://localhost:8000"
+function App() {
+  const { userData } = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  useGetCurrentUser()
+  useUpdateLocation()
+  useGetCity()
+  useGetMyshop()
+  useGetShopByCity()
+  useGetItemsByCity()
+  useGetMyOrders()
+
+  useEffect(() => {
+    const socketInstance = io(serverUrl, { withCredentials: true })
+    dispatch(setSocket(socketInstance))
+    socketInstance.on('connect', () => {
+      if (userData) {
+        socketInstance.emit('identity', { userId: userData._id })
+      }
+    })
+    console.log(userData)
+    return () => {
+      socketInstance.disconnect()
+    }
+  }, [dispatch, userData])
+
+  return (
+    <Routes>
+      <Route path='/signup' element={!userData ? <SignUp /> : <Navigate to={"/"} />} />
+      <Route path='/signin' element={!userData ? <SignIn /> : <Navigate to={"/"} />} />
+      <Route path='/forgot-password' element={!userData ? <ForgotPassword /> : <Navigate to={"/"} />} />
+      <Route path='/' element={userData ? <Home /> : <Navigate to={"/signin"} />} />
+      <Route path='/search' element={<StationSearchPage /> } />
+      <Route path='/create-edit-shop' element={userData ? <CreateEditShop /> : <Navigate to={"/signin"} />} />
+      <Route path='/add-item' element={userData ? <AddItem /> : <Navigate to={"/signin"} />} />
+      <Route path='/edit-item/:itemId' element={userData ? <EditItem /> : <Navigate to={"/signin"} />} />
+      <Route path='/cart' element={userData ? <CartPage /> : <Navigate to={"/signin"} />} />
+      <Route path='/checkout' element={userData ? <CheckOut /> : <Navigate to={"/signin"} />} />
+      <Route path='/order-placed' element={userData ? <OrderPlaced /> : <Navigate to={"/signin"} />} />
+      <Route path='/my-orders' element={userData ? <MyOrders /> : <Navigate to={"/signin"} />} />
+      <Route path='/track-order/:orderId' element={userData ? <TrackOrderPage /> : <Navigate to={"/signin"} />} />
+      <Route path='/shop/:shopId' element={userData ? <Shop /> : <Navigate to={"/signin"} />} />
+      // Add this route in your Routes component
+      <Route path='/shops-list' element={userData ? <ShopsList /> : <Navigate to={"/signin"} />} />
+    </Routes>
+  )
+}
+
+export default App
+</file>
+
+<file path="src/category.js">
+import image1 from "./assets/dokra.jpg"
+import image2 from "./assets/kutch-embroidery.png"
+import image3 from "./assets/pashmina_shawl.jpg"
+import image4 from "./assets/PATTACHITRA.jpg"
+import image5 from "./assets/saree.jpg"
+import image6 from "./assets/painting.jpg"
+import image7 from "./assets/Sandal_Soap.jpg"
+import image8 from "./assets/tea.jpg"
+import image9 from "./assets/kullu-caps.jpg"
+import image10 from "./assets/handicrafts.jpg"
+import image11 from "./assets/kerala-ayurveda.webp"
+
+export const categories = [
+    { "category": "Dokra", "image": image1 },
+    { "category": "Kutch Emoidery", "image": image2 },
+    { "category": "Pashmina Shawl", "image": image3 },
+    { "category": "Pattachitra", "image": image4 },
+    { "category": "Sambalpuri Saree", "image": image5 },
+    { "category": "Kalam paintings", "image": image6 },
+    { "category": "Sandal Soap", "image": image7 },
+    { "category": "Tea Leaf", "image": image8 },
+    { "category": "Kullu caps", "image": image9 },
+    { "category": "Terracotts", "image": image10 },
+    { "category": "ayurvedic", "image": image11 }
+]
+</file>
+
+<file path="src/index.css">
+@import "tailwindcss";
+
+* {
+ /* ya scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE/Edge purane versions */
+}
+
+::-webkit-scrollbar, 
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from './redux/store.js'
+
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  </BrowserRouter>
+ 
+)
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
+])
+</file>
+
+<file path="firebase.js">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
+  authDomain: "vingo-food-delivery.firebaseapp.com",
+  projectId: "vingo-food-delivery",
+  storageBucket: "vingo-food-delivery.firebasestorage.app",
+  messagingSenderId: "693314883513",
+  appId: "1:693314883513:web:4840c943ecf3fb61a33068"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+export { app, auth }
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/vite": "^4.1.12",
+    "axios": "^1.11.0",
+    "firebase": "^12.1.0",
+    "leaflet": "^1.9.4",
+    "nodemailer": "^7.0.5",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.66.0",
+    "react-icons": "^5.5.0",
+    "react-leaflet": "^5.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.8.1",
+    "react-spinners": "^0.17.0",
+    "recharts": "^3.2.0",
+    "socket.io-client": "^4.8.1",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "vite": "^7.1.2"
+  }
+}
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(),tailwindcss()],
+})
+</file>
+
+</files>

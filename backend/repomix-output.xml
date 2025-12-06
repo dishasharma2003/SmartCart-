@@ -1,0 +1,1824 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+config/
+  db.js
+controllers/
+  auth.controllers.js
+  item.controllers.js
+  order.controllers.js
+  shop.controllers.js
+  station.controller.js
+  user.controllers.js
+middlewares/
+  isAuth.js
+  multer.js
+models/
+  deliveryAssignment.model.js
+  item.model.js
+  order.model.js
+  shop.model.js
+  user.model.js
+public/
+  .gitkeep
+routes/
+  auth.routes.js
+  item.routes.js
+  order.routes.js
+  shop.routes.js
+  user.routes.js
+utils/
+  cloudinary.js
+  mail.js
+  token.js
+.gitignore
+index.js
+package.json
+socket.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="config/db.js">
+import mongoose from "mongoose"
+
+const connectDb=async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URL)
+        console.log("db connected")
+    } catch (error) {
+        console.log("db error")
+        console.log(`${error}`)
+    }
+}
+
+export default connectDb
+</file>
+
+<file path="controllers/auth.controllers.js">
+import User from "../models/user.model.js"
+import bcrypt, { hash } from "bcryptjs"
+import genToken from "../utils/token.js"
+import { sendOtpMail } from "../utils/mail.js"
+export const signUp=async (req,res) => {
+    try {
+        const {fullName,email,password,mobile,role}=req.body
+        let user=await User.findOne({email})
+        if(user){
+            return res.status(400).json({message:"User Already exist."})
+        }
+        if(password.length<6){
+            return res.status(400).json({message:"password must be at least 6 characters."})
+        }
+        if(mobile.length<10){
+            return res.status(400).json({message:"mobile no must be at least 10 digits."})
+        }
+     
+        const hashedPassword=await bcrypt.hash(password,10)
+        user = await User.create({
+            fullName,
+            email,
+            role,
+            mobile,
+            password:hashedPassword
+        })
+
+        const token=await genToken(user._id)
+        res.cookie("token",token,{
+            secure:false,
+            sameSite:"strict",
+            maxAge:7*24*60*60*1000,
+            httpOnly:true
+        })
+  
+        return res.status(201).json(user)
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(`sign up error ${error}`)
+    }
+}
+
+export const signIn=async (req,res) => {
+    try {
+        const {email,password}=req.body
+        const user=await User.findOne({email})
+        if(!user){
+            return res.status(400).json({message:"User does not exist."})
+        }
+        
+     const isMatch=await bcrypt.compare(password,user.password)
+     if(!isMatch){
+         return res.status(400).json({message:"incorrect Password"})
+     }
+
+        const token=await genToken(user._id)
+        res.cookie("token",token,{
+            secure:false,
+            sameSite:"strict",
+            maxAge:7*24*60*60*1000,
+            httpOnly:true
+        })
+  
+        return res.status(200).json(user)
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(`sign In error ${error}`)
+    }
+}
+
+export const signOut=async (req,res) => {
+    try {
+        res.clearCookie("token")
+return res.status(200).json({message:"log out successfully"})
+    } catch (error) {
+        return res.status(500).json(`sign out error ${error}`)
+    }
+}
+
+export const sendOtp=async (req,res) => {
+  try {
+    const {email}=req.body
+    const user=await User.findOne({email})
+    if(!user){
+       return res.status(400).json({message:"User does not exist."})
+    }
+    const otp=Math.floor(1000 + Math.random() * 9000).toString()
+    user.resetOtp=otp
+    user.otpExpires=Date.now()+5*60*1000
+    user.isOtpVerified=false
+    await user.save()
+    await sendOtpMail(email,otp)
+    return res.status(200).json({message:"otp sent successfully"})
+  } catch (error) {
+     return res.status(500).json(`send otp error ${error}`)
+  }  
+}
+
+export const verifyOtp=async (req,res) => {
+    try {
+        const {email,otp}=req.body
+        const user=await User.findOne({email})
+        if(!user || user.resetOtp!=otp || user.otpExpires<Date.now()){
+            return res.status(400).json({message:"invalid/expired otp"})
+        }
+        user.isOtpVerified=true
+        user.resetOtp=undefined
+        user.otpExpires=undefined
+        await user.save()
+        return res.status(200).json({message:"otp verify successfully"})
+    } catch (error) {
+         return res.status(500).json(`verify otp error ${error}`)
+    }
+}
+
+export const resetPassword=async (req,res) => {
+    try {
+        const {email,newPassword}=req.body
+        const user=await User.findOne({email})
+    if(!user || !user.isOtpVerified){
+       return res.status(400).json({message:"otp verification required"})
+    }
+    const hashedPassword=await bcrypt.hash(newPassword,10)
+    user.password=hashedPassword
+    user.isOtpVerified=false
+    await user.save()
+     return res.status(200).json({message:"password reset successfully"})
+    } catch (error) {
+         return res.status(500).json(`reset password error ${error}`)
+    }
+}
+
+export const googleAuth=async (req,res) => {
+    try {
+        const {fullName,email,mobile,role}=req.body
+        let user=await User.findOne({email})
+        if(!user){
+            user=await User.create({
+                fullName,email,mobile,role
+            })
+        }
+
+        const token=await genToken(user._id)
+        res.cookie("token",token,{
+            secure:false,
+            sameSite:"strict",
+            maxAge:7*24*60*60*1000,
+            httpOnly:true
+        })
+  
+        return res.status(200).json(user)
+
+
+    } catch (error) {
+         return res.status(500).json(`googleAuth error ${error}`)
+    }
+}
+</file>
+
+<file path="controllers/item.controllers.js">
+import Item from "../models/item.model.js";
+import Shop from "../models/shop.model.js";
+import uploadOnCloudinary from "../utils/cloudinary.js";
+
+export const addItem = async (req, res) => {
+    try {
+        const { name, category, foodType, price } = req.body
+        console.log(`${name} ${category} ${foodType}`)
+        let image;
+        if (req.file) {
+            image = await uploadOnCloudinary(req.file.path)
+        }
+
+        const shop = await Shop.findOne({ owner: req.userId })
+
+        console.log(shop)
+        if (!shop) {
+            console.log(`not shop`)
+            return res.status(400).json({ message: "shop not found" })
+        }
+        console.log({ name, category, foodType, price, image, shop: shop._id });
+        try {
+        // ... (Destructuring, Cloudinary upload, Shop lookup - ALL working) ...
+
+        // This line is where the exception is thrown:
+        const item = await Item.create({
+            name, category, foodType, price, image, shop: shop._id
+            })
+            
+            // This log is NOT reached if the Item.create fails:
+            console.log(item) 
+            
+            // ... (Shop update and final response - NOT reached if Item.create fails) ...
+
+        } catch (error) {
+            // EXECUTION JUMPS HERE. The 'error' variable holds the Mongoose/MongoDB failure.
+            console.error("Mongoose/DB Error:", error.message); // Log the specific message
+            return res.status(500).json({ message: `add item error ${error}` })
+        }
+        console.log(item)
+        console.log(`${image} ${shop} ${item}`)
+        shop.items.push(item._id)
+        await shop.save()
+        await shop.populate("owner")
+        await shop.populate({
+            path: "items",
+            options: { sort: { updatedAt: -1 } }
+        })
+        return res.status(201).json(shop)
+
+    } catch (error) {
+        return res.status(500).json({ message: `add item error ${error}` })
+    }
+}
+
+export const editItem = async (req, res) => {
+    try {
+        const itemId = req.params.itemId
+        const { name, category, foodType, price } = req.body
+        let image;
+        if (req.file) {
+            image = await uploadOnCloudinary(req.file.path)
+        }
+        const item = await Item.findByIdAndUpdate(itemId, {
+            name, category, foodType, price, image
+        }, { new: true })
+        if (!item) {
+            return res.status(400).json({ message: "item not found" })
+        }
+        const shop = await Shop.findOne({ owner: req.userId }).populate({
+            path: "items",
+            options: { sort: { updatedAt: -1 } }
+        })
+        return res.status(200).json(shop)
+
+    } catch (error) {
+        return res.status(500).json({ message: `edit item error ${error}` })
+    }
+}
+
+export const getItemById = async (req, res) => {
+    try {
+        const itemId = req.params.itemId
+        const item = await Item.findById(itemId)
+        if (!item) {
+            return res.status(400).json({ message: "item not found" })
+        }
+        return res.status(200).json(item)
+    } catch (error) {
+        return res.status(500).json({ message: `get item error ${error}` })
+    }
+}
+
+export const deleteItem = async (req, res) => {
+    try {
+        const itemId = req.params.itemId
+        const item = await Item.findByIdAndDelete(itemId)
+        if (!item) {
+            return res.status(400).json({ message: "item not found" })
+        }
+        const shop = await Shop.findOne({ owner: req.userId })
+        shop.items = shop.items.filter(i => i !== item._id)
+        await shop.save()
+        await shop.populate({
+            path: "items",
+            options: { sort: { updatedAt: -1 } }
+        })
+        return res.status(200).json(shop)
+
+    } catch (error) {
+        return res.status(500).json({ message: `delete item error ${error}` })
+    }
+}
+
+export const getItemByCity = async (req, res) => {
+    try {
+        const { city } = req.params
+        if (!city) {
+            return res.status(400).json({ message: "city is required" })
+        }
+        const shops = await Shop.find({
+            city: { $regex: new RegExp(`^${city}$`, "i") }
+        }).populate('items')
+        if (!shops) {
+            return res.status(400).json({ message: "shops not found" })
+        }
+        const shopIds=shops.map((shop)=>shop._id)
+
+        const items=await Item.find({shop:{$in:shopIds}})
+        return res.status(200).json(items)
+
+    } catch (error) {
+ return res.status(500).json({ message: `get item by city error ${error}` })
+    }
+}
+
+export const getItemsByShop=async (req,res) => {
+    try {
+        const {shopId}=req.params
+        const shop=await Shop.findById(shopId).populate("items")
+        if(!shop){
+            return res.status(400).json("shop not found")
+        }
+        return res.status(200).json({
+            shop,items:shop.items
+        })
+    } catch (error) {
+         return res.status(500).json({ message: `get item by shop error ${error}` })
+    }
+}
+
+export const searchItems=async (req,res) => {
+    try {
+        const {query,city}=req.query
+        if(!query || !city){
+            return null
+        }
+        const shops=await Shop.find({
+            city:{$regex:new RegExp(`^${city}$`, "i")}
+        }).populate('items')
+        if(!shops){
+            return res.status(400).json({message:"shops not found"})
+        }
+        const shopIds=shops.map(s=>s._id)
+        const items=await Item.find({
+            shop:{$in:shopIds},
+            $or:[
+              {name:{$regex:query,$options:"i"}},
+              {category:{$regex:query,$options:"i"}}  
+            ]
+
+        }).populate("shop","name image")
+
+        return res.status(200).json(items)
+
+    } catch (error) {
+         return res.status(500).json({ message: `search item  error ${error}` })
+    }
+}
+
+
+export const rating=async (req,res) => {
+    try {
+        const {itemId,rating}=req.body
+
+        if(!itemId || !rating){
+            return res.status(400).json({message:"itemId and rating is required"})
+        }
+
+        if(rating<1 || rating>5){
+             return res.status(400).json({message:"rating must be between 1 to 5"})
+        }
+
+        const item=await Item.findById(itemId)
+        if(!item){
+              return res.status(400).json({message:"item not found"})
+        }
+
+        const newCount=item.rating.count + 1
+        const newAverage=(item.rating.average*item.rating.count + rating)/newCount
+
+        item.rating.count=newCount
+        item.rating.average=newAverage
+        await item.save()
+return res.status(200).json({rating:item.rating})
+
+    } catch (error) {
+         return res.status(500).json({ message: `rating error ${error}` })
+    }
+}
+</file>
+
+<file path="controllers/order.controllers.js">
+import DeliveryAssignment from "../models/deliveryAssignment.model.js"
+import Order from "../models/order.model.js"
+import Shop from "../models/shop.model.js"
+import User from "../models/user.model.js"
+import { sendDeliveryOtpMail } from "../utils/mail.js"
+import RazorPay from "razorpay"
+import dotenv from "dotenv"
+import { count } from "console"
+
+dotenv.config()
+let instance = new RazorPay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
+export const placeOrder = async (req, res) => {
+    try {
+        const { cartItems, paymentMethod, deliveryAddress, totalAmount } = req.body
+        if (cartItems.length == 0 || !cartItems) {
+            return res.status(400).json({ message: "cart is empty" })
+        }
+        if (!deliveryAddress.text || !deliveryAddress.latitude || !deliveryAddress.longitude) {
+            return res.status(400).json({ message: "send complete deliveryAddress" })
+        }
+
+        const groupItemsByShop = {}
+
+        cartItems.forEach(item => {
+            const shopId = item.shop
+            if (!groupItemsByShop[shopId]) {
+                groupItemsByShop[shopId] = []
+            }
+            groupItemsByShop[shopId].push(item)
+        });
+
+        const shopOrders = await Promise.all(Object.keys(groupItemsByShop).map(async (shopId) => {
+            const shop = await Shop.findById(shopId).populate("owner")
+            if (!shop) {
+                return res.status(400).json({ message: "shop not found" })
+            }
+            const items = groupItemsByShop[shopId]
+            const subtotal = items.reduce((sum, i) => sum + Number(i.price) * Number(i.quantity), 0)
+            return {
+                shop: shop._id,
+                owner: shop.owner._id,
+                subtotal,
+                shopOrderItems: items.map((i) => ({
+                    item: i.id,
+                    price: i.price,
+                    quantity: i.quantity,
+                    name: i.name
+                }))
+            }
+        }
+        ))
+
+        if (paymentMethod == "online") {
+            const razorOrder = await instance.orders.create({
+                amount: Math.round(totalAmount * 100),
+                currency: 'INR',
+                receipt: `receipt_${Date.now()}`
+            })
+            const newOrder = await Order.create({
+                user: req.userId,
+                paymentMethod,
+                deliveryAddress,
+                totalAmount,
+                shopOrders,
+                razorpayOrderId: razorOrder.id,
+                payment: false
+            })
+
+            return res.status(200).json({
+                razorOrder,
+                orderId: newOrder._id,
+            })
+
+        }
+
+        const newOrder = await Order.create({
+            user: req.userId,
+            paymentMethod,
+            deliveryAddress,
+            totalAmount,
+            shopOrders
+        })
+
+        await newOrder.populate("shopOrders.shopOrderItems.item", "name image price")
+        await newOrder.populate("shopOrders.shop", "name")
+        await newOrder.populate("shopOrders.owner", "name socketId")
+        await newOrder.populate("user", "name email mobile")
+
+        const io = req.app.get('io')
+
+        if (io) {
+            newOrder.shopOrders.forEach(shopOrder => {
+                const ownerSocketId = shopOrder.owner.socketId
+                if (ownerSocketId) {
+                    io.to(ownerSocketId).emit('newOrder', {
+                        _id: newOrder._id,
+                        paymentMethod: newOrder.paymentMethod,
+                        user: newOrder.user,
+                        shopOrders: shopOrder,
+                        createdAt: newOrder.createdAt,
+                        deliveryAddress: newOrder.deliveryAddress,
+                        payment: newOrder.payment
+                    })
+                }
+            });
+        }
+
+
+
+        return res.status(201).json(newOrder)
+    } catch (error) {
+        return res.status(500).json({ message: `place order error ${error}` })
+    }
+}
+
+export const verifyPayment = async (req, res) => {
+    try {
+        const { razorpay_payment_id, orderId } = req.body
+        const payment = await instance.payments.fetch(razorpay_payment_id)
+        if (!payment || payment.status != "captured") {
+            return res.status(400).json({ message: "payment not captured" })
+        }
+        const order = await Order.findById(orderId)
+        if (!order) {
+            return res.status(400).json({ message: "order not found" })
+        }
+
+        order.payment = true
+        order.razorpayPaymentId = razorpay_payment_id
+        await order.save()
+
+        await order.populate("shopOrders.shopOrderItems.item", "name image price")
+        await order.populate("shopOrders.shop", "name")
+        await order.populate("shopOrders.owner", "name socketId")
+        await order.populate("user", "name email mobile")
+
+        const io = req.app.get('io')
+
+        if (io) {
+            order.shopOrders.forEach(shopOrder => {
+                const ownerSocketId = shopOrder.owner.socketId
+                if (ownerSocketId) {
+                    io.to(ownerSocketId).emit('newOrder', {
+                        _id: order._id,
+                        paymentMethod: order.paymentMethod,
+                        user: order.user,
+                        shopOrders: shopOrder,
+                        createdAt: order.createdAt,
+                        deliveryAddress: order.deliveryAddress,
+                        payment: order.payment
+                    })
+                }
+            });
+        }
+
+
+        return res.status(200).json(order)
+
+    } catch (error) {
+        return res.status(500).json({ message: `verify payment  error ${error}` })
+    }
+}
+
+
+
+export const getMyOrders = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId)
+        if (user.role == "user") {
+            const orders = await Order.find({ user: req.userId })
+                .sort({ createdAt: -1 })
+                .populate("shopOrders.shop", "name")
+                .populate("shopOrders.owner", "name email mobile")
+                .populate("shopOrders.shopOrderItems.item", "name image price")
+
+            return res.status(200).json(orders)
+        } else if (user.role == "owner") {
+            const orders = await Order.find({ "shopOrders.owner": req.userId })
+                .sort({ createdAt: -1 })
+                .populate("shopOrders.shop", "name")
+                .populate("user")
+                .populate("shopOrders.shopOrderItems.item", "name image price")
+                .populate("shopOrders.assignedDeliveryBoy", "fullName mobile")
+
+
+
+            const filteredOrders = orders.map((order => ({
+                _id: order._id,
+                paymentMethod: order.paymentMethod,
+                user: order.user,
+                shopOrders: order.shopOrders.find(o => o.owner._id == req.userId),
+                createdAt: order.createdAt,
+                deliveryAddress: order.deliveryAddress,
+                payment: order.payment
+            })))
+
+
+            return res.status(200).json(filteredOrders)
+        }
+
+    } catch (error) {
+        return res.status(500).json({ message: `get User order error ${error}` })
+    }
+}
+
+
+export const updateOrderStatus = async (req, res) => {
+    try {
+        const { orderId, shopId } = req.params
+        const { status } = req.body
+        const order = await Order.findById(orderId)
+
+        const shopOrder = order.shopOrders.find(o => o.shop == shopId)
+        if (!shopOrder) {
+            return res.status(400).json({ message: "shop order not found" })
+        }
+        shopOrder.status = status
+        let deliveryBoysPayload = []
+        if (status == "out of delivery" && !shopOrder.assignment) {
+            const { longitude, latitude } = order.deliveryAddress
+            const nearByDeliveryBoys = await User.find({
+                role: "deliveryBoy",
+                location: {
+                    $near: {
+                        $geometry: { type: "Point", coordinates: [Number(longitude), Number(latitude)] },
+                        $maxDistance: 5000
+                    }
+                }
+            })
+
+            const nearByIds = nearByDeliveryBoys.map(b => b._id)
+            const busyIds = await DeliveryAssignment.find({
+                assignedTo: { $in: nearByIds },
+                status: { $nin: ["brodcasted", "completed"] }
+
+            }).distinct("assignedTo")
+
+            const busyIdSet = new Set(busyIds.map(id => String(id)))
+
+            const availableBoys = nearByDeliveryBoys.filter(b => !busyIdSet.has(String(b._id)))
+            const candidates = availableBoys.map(b => b._id)
+
+            if (candidates.length == 0) {
+                await order.save()
+                return res.json({
+                    message: "order status updated but there is no available delivery boys"
+                })
+            }
+
+            const deliveryAssignment = await DeliveryAssignment.create({
+                order: order?._id,
+                shop: shopOrder.shop,
+                shopOrderId: shopOrder?._id,
+                brodcastedTo: candidates,
+                status: "brodcasted"
+            })
+
+            shopOrder.assignedDeliveryBoy = deliveryAssignment.assignedTo
+            shopOrder.assignment = deliveryAssignment._id
+            deliveryBoysPayload = availableBoys.map(b => ({
+                id: b._id,
+                fullName: b.fullName,
+                longitude: b.location.coordinates?.[0],
+                latitude: b.location.coordinates?.[1],
+                mobile: b.mobile
+            }))
+
+            await deliveryAssignment.populate('order')
+            await deliveryAssignment.populate('shop')
+            const io = req.app.get('io')
+            if (io) {
+                availableBoys.forEach(boy => {
+                    const boySocketId = boy.socketId
+                    if (boySocketId) {
+                        io.to(boySocketId).emit('newAssignment', {
+                            sentTo:boy._id,
+                            assignmentId: deliveryAssignment._id,
+                            orderId: deliveryAssignment.order._id,
+                            shopName: deliveryAssignment.shop.name,
+                            deliveryAddress: deliveryAssignment.order.deliveryAddress,
+                            items: deliveryAssignment.order.shopOrders.find(so => so._id.equals(deliveryAssignment.shopOrderId)).shopOrderItems || [],
+                            subtotal: deliveryAssignment.order.shopOrders.find(so => so._id.equals(deliveryAssignment.shopOrderId))?.subtotal
+                        })
+                    }
+                });
+            }
+
+
+
+
+
+        }
+
+
+        await order.save()
+        const updatedShopOrder = order.shopOrders.find(o => o.shop == shopId)
+        await order.populate("shopOrders.shop", "name")
+        await order.populate("shopOrders.assignedDeliveryBoy", "fullName email mobile")
+        await order.populate("user", "socketId")
+
+        const io = req.app.get('io')
+        if (io) {
+            const userSocketId = order.user.socketId
+            if (userSocketId) {
+                io.to(userSocketId).emit('update-status', {
+                    orderId: order._id,
+                    shopId: updatedShopOrder.shop._id,
+                    status: updatedShopOrder.status,
+                    userId: order.user._id
+                })
+            }
+        }
+
+
+
+        return res.status(200).json({
+            shopOrder: updatedShopOrder,
+            assignedDeliveryBoy: updatedShopOrder?.assignedDeliveryBoy,
+            availableBoys: deliveryBoysPayload,
+            assignment: updatedShopOrder?.assignment?._id
+
+        })
+
+
+
+    } catch (error) {
+        return res.status(500).json({ message: `order status error ${error}` })
+    }
+}
+
+
+export const getDeliveryBoyAssignment = async (req, res) => {
+    try {
+        const deliveryBoyId = req.userId
+        const assignments = await DeliveryAssignment.find({
+            brodcastedTo: deliveryBoyId,
+            status: "brodcasted"
+        })
+            .populate("order")
+            .populate("shop")
+
+        const formated = assignments.map(a => ({
+            assignmentId: a._id,
+            orderId: a.order._id,
+            shopName: a.shop.name,
+            deliveryAddress: a.order.deliveryAddress,
+            items: a.order.shopOrders.find(so => so._id.equals(a.shopOrderId)).shopOrderItems || [],
+            subtotal: a.order.shopOrders.find(so => so._id.equals(a.shopOrderId))?.subtotal
+        }))
+
+        return res.status(200).json(formated)
+    } catch (error) {
+        return res.status(500).json({ message: `get Assignment error ${error}` })
+    }
+}
+
+
+export const acceptOrder = async (req, res) => {
+    try {
+        const { assignmentId } = req.params
+        const assignment = await DeliveryAssignment.findById(assignmentId)
+        if (!assignment) {
+            return res.status(400).json({ message: "assignment not found" })
+        }
+        if (assignment.status !== "brodcasted") {
+            return res.status(400).json({ message: "assignment is expired" })
+        }
+
+        const alreadyAssigned = await DeliveryAssignment.findOne({
+            assignedTo: req.userId,
+            status: { $nin: ["brodcasted", "completed"] }
+        })
+
+        if (alreadyAssigned) {
+            return res.status(400).json({ message: "You are already assigned to another order" })
+        }
+
+        assignment.assignedTo = req.userId
+        assignment.status = 'assigned'
+        assignment.acceptedAt = new Date()
+        await assignment.save()
+
+        const order = await Order.findById(assignment.order)
+        if (!order) {
+            return res.status(400).json({ message: "order not found" })
+        }
+
+        let shopOrder = order.shopOrders.id(assignment.shopOrderId)
+        shopOrder.assignedDeliveryBoy = req.userId
+        await order.save()
+
+
+        return res.status(200).json({
+            message: 'order accepted'
+        })
+    } catch (error) {
+        return res.status(500).json({ message: `accept order error ${error}` })
+    }
+}
+
+
+
+export const getCurrentOrder = async (req, res) => {
+    try {
+        const assignment = await DeliveryAssignment.findOne({
+            assignedTo: req.userId,
+            status: "assigned"
+        })
+            .populate("shop", "name")
+            .populate("assignedTo", "fullName email mobile location")
+            .populate({
+                path: "order",
+                populate: [{ path: "user", select: "fullName email location mobile" }]
+
+            })
+
+        if (!assignment) {
+            return res.status(400).json({ message: "assignment not found" })
+        }
+        if (!assignment.order) {
+            return res.status(400).json({ message: "order not found" })
+        }
+
+        const shopOrder = assignment.order.shopOrders.find(so => String(so._id) == String(assignment.shopOrderId))
+
+        if (!shopOrder) {
+            return res.status(400).json({ message: "shopOrder not found" })
+        }
+
+        let deliveryBoyLocation = { lat: null, lon: null }
+        if (assignment.assignedTo.location.coordinates.length == 2) {
+            deliveryBoyLocation.lat = assignment.assignedTo.location.coordinates[1]
+            deliveryBoyLocation.lon = assignment.assignedTo.location.coordinates[0]
+        }
+
+        let customerLocation = { lat: null, lon: null }
+        if (assignment.order.deliveryAddress) {
+            customerLocation.lat = assignment.order.deliveryAddress.latitude
+            customerLocation.lon = assignment.order.deliveryAddress.longitude
+        }
+
+        return res.status(200).json({
+            _id: assignment.order._id,
+            user: assignment.order.user,
+            shopOrder,
+            deliveryAddress: assignment.order.deliveryAddress,
+            deliveryBoyLocation,
+            customerLocation
+        })
+
+
+    } catch (error) {
+
+    }
+}
+
+export const getOrderById = async (req, res) => {
+    try {
+        const { orderId } = req.params
+        const order = await Order.findById(orderId)
+            .populate("user")
+            .populate({
+                path: "shopOrders.shop",
+                model: "Shop"
+            })
+            .populate({
+                path: "shopOrders.assignedDeliveryBoy",
+                model: "User"
+            })
+            .populate({
+                path: "shopOrders.shopOrderItems.item",
+                model: "Item"
+            })
+            .lean()
+
+        if (!order) {
+            return res.status(400).json({ message: "order not found" })
+        }
+        return res.status(200).json(order)
+    } catch (error) {
+        return res.status(500).json({ message: `get by id order error ${error}` })
+    }
+}
+
+export const sendDeliveryOtp = async (req, res) => {
+    try {
+        const { orderId, shopOrderId } = req.body
+        const order = await Order.findById(orderId).populate("user")
+        const shopOrder = order.shopOrders.id(shopOrderId)
+        if (!order || !shopOrder) {
+            return res.status(400).json({ message: "enter valid order/shopOrderid" })
+        }
+        const otp = Math.floor(1000 + Math.random() * 9000).toString()
+        shopOrder.deliveryOtp = otp
+        shopOrder.otpExpires = Date.now() + 5 * 60 * 1000
+        await order.save()
+        await sendDeliveryOtpMail(order.user, otp)
+        return res.status(200).json({ message: `Otp sent Successfuly to ${order?.user?.fullName}` })
+    } catch (error) {
+        return res.status(500).json({ message: `delivery otp error ${error}` })
+    }
+}
+
+export const verifyDeliveryOtp = async (req, res) => {
+    try {
+        const { orderId, shopOrderId, otp } = req.body
+        const order = await Order.findById(orderId).populate("user")
+        const shopOrder = order.shopOrders.id(shopOrderId)
+        if (!order || !shopOrder) {
+            return res.status(400).json({ message: "enter valid order/shopOrderid" })
+        }
+        if (shopOrder.deliveryOtp !== otp || !shopOrder.otpExpires || shopOrder.otpExpires < Date.now()) {
+            return res.status(400).json({ message: "Invalid/Expired Otp" })
+        }
+
+        shopOrder.status = "delivered"
+        shopOrder.deliveredAt = Date.now()
+        await order.save()
+        await DeliveryAssignment.deleteOne({
+            shopOrderId: shopOrder._id,
+            order: order._id,
+            assignedTo: shopOrder.assignedDeliveryBoy
+        })
+
+        return res.status(200).json({ message: "Order Delivered Successfully!" })
+
+    } catch (error) {
+        return res.status(500).json({ message: `verify delivery otp error ${error}` })
+    }
+}
+
+export const getTodayDeliveries=async (req,res) => {
+    try {
+        const deliveryBoyId=req.userId
+        const startsOfDay=new Date()
+        startsOfDay.setHours(0,0,0,0)
+
+        const orders=await Order.find({
+           "shopOrders.assignedDeliveryBoy":deliveryBoyId,
+           "shopOrders.status":"delivered",
+           "shopOrders.deliveredAt":{$gte:startsOfDay}
+        }).lean()
+
+     let todaysDeliveries=[] 
+     
+     orders.forEach(order=>{
+        order.shopOrders.forEach(shopOrder=>{
+            if(shopOrder.assignedDeliveryBoy==deliveryBoyId &&
+                shopOrder.status=="delivered" &&
+                shopOrder.deliveredAt &&
+                shopOrder.deliveredAt>=startsOfDay
+            ){
+                todaysDeliveries.push(shopOrder)
+            }
+        })
+     })
+
+let stats={}
+
+todaysDeliveries.forEach(shopOrder=>{
+    const hour=new Date(shopOrder.deliveredAt).getHours()
+    stats[hour]=(stats[hour] || 0) + 1
+})
+
+let formattedStats=Object.keys(stats).map(hour=>({
+ hour:parseInt(hour),
+ count:stats[hour]   
+}))
+
+formattedStats.sort((a,b)=>a.hour-b.hour)
+
+return res.status(200).json(formattedStats)
+  
+
+    } catch (error) {
+        return res.status(500).json({ message: `today deliveries error ${error}` }) 
+    }
+}
+</file>
+
+<file path="controllers/shop.controllers.js">
+import Shop from "../models/shop.model.js";
+import uploadOnCloudinary from "../utils/cloudinary.js";
+
+export const createEditShop = async (req, res) => {
+    try {
+        const { name, city, state, address } = req.body
+        let image;
+        if (req.file) {
+            console.log(req.file)
+            image = await uploadOnCloudinary(req.file.path)
+        }
+        let shop = await Shop.findOne({ owner: req.userId })
+        if (!shop) {
+            shop = await Shop.create({
+                name, city, state, address, image, owner: req.userId
+            })
+        } else {
+            shop = await Shop.findByIdAndUpdate(shop._id, {
+                name, city, state, address, image, owner: req.userId
+            }, { new: true })
+        }
+
+        await shop.populate("owner items")
+        return res.status(201).json(shop)
+    } catch (error) {
+        return res.status(500).json({ message: `create shop error ${error}` })
+    }
+}
+
+export const getMyShop = async (req, res) => {
+    try {
+        const shop = await Shop.findOne({ owner: req.userId }).populate("owner").populate({
+            path: "items",
+            options: { sort: { updatedAt: -1 } }
+        })
+        if (!shop) {
+            return null
+        }
+        return res.status(200).json(shop)
+    } catch (error) {
+        return res.status(500).json({ message: `get my shop error ${error}` })
+    }
+}
+
+export const getShopByCity = async (req, res) => {
+    try {
+        const { city } = req.params
+
+        const shops = await Shop.find({
+            city: { $regex: new RegExp(`^${city}$`, "i") }
+        }).populate('items')
+        if (!shops) {
+            return res.status(400).json({ message: "shops not found" })
+        }
+        return res.status(200).json(shops)
+    } catch (error) {
+        return res.status(500).json({ message: `get shop by city error ${error}` })
+    }
+}
+</file>
+
+<file path="controllers/station.controller.js">
+import axios from "axios";
+
+export const SearchTrainStationList = async (req, res) => {
+    try {
+        const { trainNo, trainDate } = req.query
+        if (!trainNo && !trainDate) {
+            return res.json({
+                success: false,
+                message: "Query is missing"
+            });
+        }
+        const trainResult = await axios.get(`https://railradar.in/api/v1/trains/${trainNo}/schedule?journeyDate=${trainDate}`)
+        if (!trainResult.data.success) {
+            return res.json({
+                success: false
+            })
+        }
+        return res.json({
+            success: true,
+            data: {
+                trainDetail: trainResult.data.data.train,
+                station: trainResult.data.data.route
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.json({
+            success: false,
+        })
+    }
+}
+</file>
+
+<file path="controllers/user.controllers.js">
+import User from "../models/user.model.js"
+
+export const getCurrentUser=async (req,res) => {
+    try {
+        const userId=req.userId
+        if(!userId){
+            return res.status(400).json({message:"userId is not found"})
+        }
+        const user=await User.findById(userId)
+        if(!user){
+               return res.status(400).json({message:"user is not found"})
+        }
+        return res.status(200).json(user)
+    } catch (error) {
+        return res.status(500).json({message:`get current user error ${error}`})
+    }
+}
+
+export const updateUserLocation=async (req,res) => {
+    try {
+        const {lat,lon}=req.body
+        const user=await User.findByIdAndUpdate(req.userId,{
+            location:{
+                type:'Point',
+                coordinates:[lon,lat]
+            }
+        },{new:true})
+         if(!user){
+               return res.status(400).json({message:"user is not found"})
+        }
+        
+        return res.status(200).json({message:'location updated'})
+    } catch (error) {
+           return res.status(500).json({message:`update location user error ${error}`})
+    }
+}
+</file>
+
+<file path="middlewares/isAuth.js">
+import jwt from "jsonwebtoken"
+const isAuth=async (req,res,next) => {
+    try {
+        const token=req.cookies.token
+        if(!token){
+            return res.status(400).json({message:"token not found"})
+        }
+        const decodeToken=jwt.verify(token,process.env.JWT_SECRET)
+        if(!decodeToken){
+ return res.status(400).json({message:"token not verify"})
+        }
+        req.userId=decodeToken.userId
+        next()
+    } catch (error) {
+         return res.status(500).json({message:"isAuth error"})
+    }
+}
+
+export default isAuth
+</file>
+
+<file path="middlewares/multer.js">
+import multer from "multer"
+const storage=multer.diskStorage({
+   destination:(req,file,cb)=>{
+    cb(null,"./public")
+   },
+   filename:(req,file,cb)=>{
+    cb(null,file.originalname)
+   }
+})
+
+export const upload=multer({storage})
+</file>
+
+<file path="models/deliveryAssignment.model.js">
+import mongoose from "mongoose";
+
+const deliveryAssignmentSchema = new mongoose.Schema({
+    order: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order"
+    },
+    shop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shop"
+    },
+    shopOrderId:{
+         type: mongoose.Schema.Types.ObjectId,
+         required:true
+    },
+    brodcastedTo:[
+        {
+         type: mongoose.Schema.Types.ObjectId,
+         ref:"User"
+    }
+    ],
+    assignedTo:{
+        type: mongoose.Schema.Types.ObjectId,
+         ref:"User",
+         default:null
+    },
+    status:{
+        type:String,
+        enum:["brodcasted","assigned","completed"],
+        default:"brodcasted"
+    }
+    ,
+    acceptedAt:Date
+}, { timestamps: true })
+
+const DeliveryAssignment=mongoose.model("DeliveryAssignment",deliveryAssignmentSchema)
+export default DeliveryAssignment
+</file>
+
+<file path="models/item.model.js">
+import mongoose from "mongoose";
+
+const itemSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    shop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shop"
+    },
+    category: {
+        type: String,
+        enum: ["Item",
+            "Clothes",
+            "Wooden",
+            "Accessories",
+            "Headwaer",
+            "Painting",
+            "ayurvedic",
+            "Others"
+        ],
+        required:true
+    },
+    price:{
+        type:Number,
+        min:0,
+        required:true
+    },
+    foodType:{
+        type:String,
+        enum:["veg","non veg"],
+        required:true
+    },
+   rating:{
+    average:{type:Number,default:0},
+    count:{type:Number,default:0}
+   }
+}, { timestamps: true })
+
+const Item=mongoose.model("Item",itemSchema)
+export default Item
+</file>
+
+<file path="models/order.model.js">
+import mongoose from "mongoose";
+
+const shopOrderItemSchema = new mongoose.Schema({
+    item:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Item",
+        required:true
+    },
+    name:String,
+    price:Number,
+    quantity:Number
+}, { timestamps: true })
+
+const shopOrderSchema = new mongoose.Schema({
+    shop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shop"
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    subtotal: Number,
+    shopOrderItems: [shopOrderItemSchema],
+    status:{
+        type:String,
+        enum:["pending","preparing","out of delivery","delivered"],
+        default:"pending"
+    },
+  assignment:{
+     type: mongoose.Schema.Types.ObjectId,
+    ref: "DeliveryAssignment",
+    default:null
+  },
+  assignedDeliveryBoy:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+deliveryOtp:{
+        type:String,
+        default:null
+    },
+otpExpires:{
+        type:Date,
+        default:null
+    },
+deliveredAt:{
+    type:Date,
+    default:null
+}
+
+}, { timestamps: true })
+
+const orderSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    paymentMethod: {
+        type: String,
+        enum: ['cod', "online"],
+        required: true
+    },
+    deliveryAddress: {
+        text: String,
+        latitude: Number,
+        longitude: Number
+    },
+    totalAmount: {
+        type: Number
+    }
+    ,
+    shopOrders: [shopOrderSchema],
+    payment:{
+        type:Boolean,
+        default:false
+    },
+    razorpayOrderId:{
+        type:String,
+        default:""
+    },
+   razorpayPaymentId:{
+    type:String,
+       default:""
+   }
+}, { timestamps: true })
+
+const Order=mongoose.model("Order",orderSchema)
+export default Order
+</file>
+
+<file path="models/shop.model.js">
+import mongoose from "mongoose";
+
+const shopSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    image:{
+        type:String,
+        required:true
+    },
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+    },
+    city:{
+         type:String,
+        required:true
+    },
+    state:{
+         type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    items:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Item"
+    }]
+
+},{timestamps:true})
+
+const Shop=mongoose.model("Shop",shopSchema)
+export default Shop
+</file>
+
+<file path="models/user.model.js">
+import mongoose from "mongoose";
+import { type } from "os";
+
+const userSchema = new mongoose.Schema({
+    fullName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique:true
+    },
+    password:{
+        type: String,
+    },
+    mobile:{
+        type: String,
+        required: true, 
+    },
+    role:{
+        type:String,
+        enum:["user","owner","deliveryBoy"],
+        required:true
+    },
+    resetOtp:{
+        type:String
+    },
+    isOtpVerified:{
+        type:Boolean,
+        default:false
+    },
+    otpExpires:{
+        type:Date
+    },
+    socketId:{
+     type:String,
+     
+    },
+    isOnline:{
+        type:Boolean,
+        default:false
+    },
+   location:{
+type:{type:String,enum:['Point'],default:'Point'},
+coordinates:{type:[Number],default:[0,0]}
+   }
+  
+}, { timestamps: true })
+
+userSchema.index({location:'2dsphere'})
+
+
+const User=mongoose.model("User",userSchema)
+export default User
+</file>
+
+<file path="routes/auth.routes.js">
+import express from "express"
+import { googleAuth, resetPassword, sendOtp, signIn, signOut, signUp, verifyOtp } from "../controllers/auth.controllers.js"
+
+const authRouter=express.Router()
+
+authRouter.post("/signup",signUp)
+authRouter.post("/signin",signIn)
+authRouter.get("/signout",signOut)
+authRouter.post("/send-otp",sendOtp)
+authRouter.post("/verify-otp",verifyOtp)
+authRouter.post("/reset-password",resetPassword)
+// authRouter.post("/google-auth",googleAuth)
+
+export default authRouter
+</file>
+
+<file path="routes/item.routes.js">
+import express from "express"
+
+import isAuth from "../middlewares/isAuth.js"
+import { addItem, deleteItem, editItem, getItemByCity, getItemById, getItemsByShop, rating, searchItems } from "../controllers/item.controllers.js"
+import { upload } from "../middlewares/multer.js"
+
+
+
+const itemRouter=express.Router()
+
+itemRouter.post("/add-item",isAuth,upload.single("image"),addItem)
+itemRouter.post("/edit-item/:itemId",isAuth,upload.single("image"),editItem)
+itemRouter.get("/get-by-id/:itemId",isAuth,getItemById)
+itemRouter.get("/delete/:itemId",isAuth,deleteItem)
+itemRouter.get("/get-by-city/:city",isAuth,getItemByCity)
+itemRouter.get("/get-by-shop/:shopId",isAuth,getItemsByShop)
+itemRouter.get("/search-items",isAuth,searchItems)
+itemRouter.post("/rating",isAuth,rating)
+
+export default itemRouter
+</file>
+
+<file path="routes/order.routes.js">
+import express from "express"
+import isAuth from "../middlewares/isAuth.js"
+import { acceptOrder, getCurrentOrder, getDeliveryBoyAssignment, getMyOrders, getOrderById, getTodayDeliveries, placeOrder, sendDeliveryOtp, updateOrderStatus, verifyDeliveryOtp, verifyPayment } from "../controllers/order.controllers.js"
+
+
+
+
+const orderRouter=express.Router()
+
+orderRouter.post("/place-order",isAuth,placeOrder)
+orderRouter.post("/verify-payment",isAuth,verifyPayment)
+orderRouter.get("/my-orders",isAuth,getMyOrders)
+orderRouter.get("/get-assignments",isAuth,getDeliveryBoyAssignment)
+orderRouter.get("/get-current-order",isAuth,getCurrentOrder)
+orderRouter.post("/send-delivery-otp",isAuth,sendDeliveryOtp)
+orderRouter.post("/verify-delivery-otp",isAuth,verifyDeliveryOtp)
+orderRouter.post("/update-status/:orderId/:shopId",isAuth,updateOrderStatus)
+orderRouter.get('/accept-order/:assignmentId',isAuth,acceptOrder)
+orderRouter.get('/get-order-by-id/:orderId',isAuth,getOrderById)
+orderRouter.get('/get-today-deliveries',isAuth,getTodayDeliveries)
+
+export default orderRouter
+</file>
+
+<file path="routes/shop.routes.js">
+import express from "express"
+import { createEditShop, getMyShop, getShopByCity } from "../controllers/shop.controllers.js"
+import isAuth from "../middlewares/isAuth.js"
+import { upload } from "../middlewares/multer.js"
+
+
+
+const shopRouter=express.Router()
+
+shopRouter.post("/create-edit",isAuth,upload.single("image"),createEditShop)
+shopRouter.get("/get-my",isAuth,getMyShop)
+shopRouter.get("/get-by-city/:city",isAuth,getShopByCity)
+
+export default shopRouter
+</file>
+
+<file path="routes/user.routes.js">
+import express from "express"
+import { getCurrentUser, updateUserLocation } from "../controllers/user.controllers.js"
+import { SearchTrainStationList } from "../controllers/station.controller.js"
+import isAuth from "../middlewares/isAuth.js"
+
+
+const userRouter = express.Router()
+
+userRouter.get("/current", isAuth, getCurrentUser)
+userRouter.get("/search", SearchTrainStationList)
+userRouter.post('/update-location', isAuth, updateUserLocation)
+export default userRouter
+</file>
+
+<file path="utils/cloudinary.js">
+import { v2 as cloudinary } from 'cloudinary'
+import fs from "fs"
+const uploadOnCloudinary = async (file) => {
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    });
+    try {
+        const result = await cloudinary.uploader.upload(file)
+        fs.unlinkSync(file)
+        return result.secure_url
+    } catch (error) {
+        fs.unlinkSync(file)
+        console.log(error)
+    }
+}
+
+export default uploadOnCloudinary
+</file>
+
+<file path="utils/mail.js">
+import nodemailer from "nodemailer"
+import dotenv from "dotenv"
+dotenv.config()
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASS,
+  },
+});
+
+export const sendOtpMail=async (to,otp) => {
+    await transporter.sendMail({
+        from:process.env.EMAIL,
+        to,
+        subject:"Reset Your Password",
+        html:`<p>Your OTP for password reset is <b>${otp}</b>. It expires in 5 minutes.</p>`
+    })
+}
+
+
+export const sendDeliveryOtpMail=async (user,otp) => {
+    await transporter.sendMail({
+        from:process.env.EMAIL,
+        to:user.email,
+        subject:"Delivery OTP",
+        html:`<p>Your OTP for delivery is <b>${otp}</b>. It expires in 5 minutes.</p>`
+    })
+}
+</file>
+
+<file path="utils/token.js">
+import jwt from "jsonwebtoken"
+
+const genToken=async (userId) => {
+    try {
+        const token= jwt.sign({userId},process.env.JWT_SECRET,{expiresIn:"7d"})
+        return token
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export default genToken
+</file>
+
+<file path=".gitignore">
+.env
+</file>
+
+<file path="index.js">
+import express from "express"
+import dotenv from "dotenv"
+dotenv.config()
+import connectDb from "./config/db.js"
+import cookieParser from "cookie-parser"
+import authRouter from "./routes/auth.routes.js"
+import cors from "cors"
+import userRouter from "./routes/user.routes.js"
+
+import itemRouter from "./routes/item.routes.js"
+import shopRouter from "./routes/shop.routes.js"
+import orderRouter from "./routes/order.routes.js"
+import http from "http"
+import { Server } from "socket.io"
+import { socketHandler } from "./socket.js"
+
+const app = express()
+const server = http.createServer(app)
+
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:5173",
+        credentials: true,
+        methods: ['POST', 'GET']
+    }
+})
+
+app.set("io", io)
+
+
+
+const port = process.env.PORT || 5000
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
+app.use(express.json())
+app.use(cookieParser())
+app.use("/api/auth", authRouter)
+app.use("/api/user", userRouter)
+app.use("/api/shop", shopRouter)
+app.use("/api/item", itemRouter)
+app.use("/api/order", orderRouter)
+
+socketHandler(io)
+server.listen(port, () => {
+    connectDb()
+    console.log(`server started at ${port}`)
+})
+</file>
+
+<file path="package.json">
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Virtual code",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.2",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.5",
+    "nodemon": "^3.1.11",
+    "razorpay": "^2.9.6",
+    "socket.io": "^4.8.1"
+  }
+}
+</file>
+
+<file path="socket.js">
+import User from "./models/user.model.js"
+
+export const socketHandler = (io) => {
+  io.on('connection', (socket) => {
+    console.log(socket.id)
+    socket.on('identity', async ({ userId }) => {
+      try {
+        const user = await User.findByIdAndUpdate(userId, {
+          socketId: socket.id, isOnline: true
+        }, { new: true })
+      } catch (error) {
+        console.log(error)
+      }
+    })
+
+
+    socket.on('updateLocation', async ({ latitude, longitude, userId }) => {
+      try {
+        const user = await User.findByIdAndUpdate(userId, {
+          location: {
+            type: 'Point',
+            coordinates: [longitude, latitude]
+          },
+          isOnline: true,
+          socketId: socket.id
+        })
+
+        if (user) {
+          io.emit('updateDeliveryLocation',{
+            deliveryBoyId:userId,
+            latitude,
+            longitude
+          })
+        }
+
+
+      } catch (error) {
+          console.log('updateDeliveryLocation error')
+      }
+    })
+
+
+
+
+    socket.on('disconnect', async () => {
+      try {
+
+        await User.findOneAndUpdate({ socketId: socket.id }, {
+          socketId: null,
+          isOnline: false
+        })
+      } catch (error) {
+        console.log(error)
+      }
+
+    })
+  })
+}
+</file>
+
+</files>
